@@ -182,4 +182,5 @@ eval $(thefuck --alias fk)
 # --- setting up zoxide ---
 eval "$(zoxide init --cmd cd zsh)"
 
-
+# installing tldr
+export PATH="$PATH:/usr/local/bin/tldr"
