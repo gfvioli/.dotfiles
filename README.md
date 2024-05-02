@@ -1,2 +1,2 @@
 # dotfiles
-Repo to store my dofiles
+Repo to store my dotfiles
