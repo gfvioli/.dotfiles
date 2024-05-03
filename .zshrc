@@ -175,12 +175,16 @@ _fzf_comprun() {
   esac
 }
 
+# adding local bin to path for thefuck and zocxide
+export PATH="$PATH:$HOME/local/bin"
+
 # --- setting up thefuck ---
 eval $(thefuck --alias)
 eval $(thefuck --alias fk)
 
+# installing tldr
+export PATH="$PATH:/usr/local/bin/tldr"
+
 # --- setting up zoxide ---
 eval "$(zoxide init --cmd cd zsh)"
 
-# installing tldr
-export PATH="$PATH:/usr/local/bin/tldr"
