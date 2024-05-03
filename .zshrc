@@ -176,7 +176,7 @@ _fzf_comprun() {
 }
 
 # adding local bin to path for thefuck and zocxide
-export PATH="$PATH:$HOME/local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # --- setting up thefuck ---
 eval $(thefuck --alias)
