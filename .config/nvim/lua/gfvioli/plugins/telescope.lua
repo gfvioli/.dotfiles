@@ -37,9 +37,9 @@ return {
         keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<CR>", { desc = "Fuzzy string in cwd" })
         keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<CR>", { desc = "Find string under cursor in cwd" })
         keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find TODO comments" })
-        keymap.set("n", "<leader>fwt", "<cmd>lua require('telescope').extension.git_worktree.git_worktrees()<CR>",
+        keymap.set("n", "<leader>fwt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",
             { desc = "Switching between worktrees" })
-        keymap.set("n", "<leader>fawt", "<cmd>lua require('telescope').extension.git_worktree.create_git_worktree()<CR>",
+        keymap.set("n", "<leader>fawt", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
             { desc = "Create new worktree" })
     end,
 }
