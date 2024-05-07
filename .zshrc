@@ -147,7 +147,7 @@ source ~/fzf-git.sh/fzf-git.sh
 export BAT_THEME=tokyonight_night
 
 # --- Eza (better ls) ---
-alias ls="eza --color=always --long --git --icons=always --no-time --no-user --no-permissions"
+alias ls="eza --color=always --git --icons=always --no-time --no-user --no-permissions"
 
 # setting up fzf previews with EZA
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
