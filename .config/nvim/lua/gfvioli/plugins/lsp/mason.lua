@@ -16,7 +16,7 @@ return {
 
         mason.setup({
             ui = {
-                icons =  {
+                icons = {
                     package_installed = "✓",
                     package_pending = "➜",
                     packa_uninstalled = "✗",
@@ -30,6 +30,7 @@ return {
                 "rust_analyzer",
                 "ruff_lsp",
                 "lua_ls",
+                "debugpy"
             },
         })
 
