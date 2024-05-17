@@ -30,7 +30,6 @@ return {
                 "rust_analyzer",
                 "ruff_lsp",
                 "lua_ls",
-                "debugpy"
             },
         })
 
@@ -39,6 +38,7 @@ return {
                 "prettier",
                 "stylua",
                 "ruff",
+                "debugpy"
             },
         })
     end,
