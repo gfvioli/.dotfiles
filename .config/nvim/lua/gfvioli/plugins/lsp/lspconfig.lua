@@ -1,10 +1,10 @@
 return {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile"},
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        { "antosha417/nvim-lsp-file-operations", config = true},
-        { "folke/neodev.nvim", opts = {} },
+        { "antosha417/nvim-lsp-file-operations", config = true },
+        { "folke/neodev.nvim",                   opts = {} },
     },
     config = function()
         -- import lspconfig plugin
@@ -24,7 +24,7 @@ return {
                 -- Buffer local mappings
                 -- See `:help vim.lsp.*` for documentation on any of the functions below
 
-                local opts = { buffer = ev.buf, silent = true}
+                local opts = { buffer = ev.buf, silent = true }
 
                 -- set keybinds
                 opts.desc = "Show LSP references"
@@ -65,6 +65,9 @@ return {
 
                 opts.desc = "Restart LSP"
                 keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+
+                opts.desc = '[D]ocument [S]ymbols'
+                keymap.set('n', '<leader>ds', '<cmd>Telescope lsp_document_symbols', opts)
             end,
         })
 
@@ -72,10 +75,10 @@ return {
         local capabilities = cmp_nvim_lsp.default_capabilities()
 
         local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-            for type, icon in pairs(signs) do
-              local hl = "DiagnosticSign" .. type
-              vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-            end
+        for type, icon in pairs(signs) do
+            local hl = "DiagnosticSign" .. type
+            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+        end
 
         mason_lspconfig.setup_handlers({
             function(server_name)
@@ -100,5 +103,28 @@ return {
             end,
         })
 
+        lspconfig.ruff_lsp.setup({
+            init_options = {
+                settings = {
+                    -- Any extra CLI arguments for `ruff` go here.
+                    args = {},
+                }
+            }
+        })
+
+        lspconfig.pyright.setup({
+            settings = {
+                pyright = {
+                    disableOrganizeImports = true,
+                    disableTaggedHints = true,
+                },
+                python = {
+                    analysis = {
+                        ignore = ({ '*' }),
+                        typeCheckingMode = 'off',
+                    }
+                }
+            }
+        })
     end,
 }

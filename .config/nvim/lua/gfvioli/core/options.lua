@@ -29,9 +29,9 @@ vim.opt.scrolloff      = 8 -- never more than 8 lines at the end of the file
 
 vim.opt.cursorline     = true
 
-vim.opt.termguicolors  = true          -- turning on termguicolors for tokyonight colorscheme to work
-vim.opt.background     = "dark"        -- colorschemes that can be both light or dark will use the dark mode
-vim.opt.signcolumn     = "yes"         -- show sign column such that text doesn't shift
+vim.opt.termguicolors  = true               -- turning on termguicolors for tokyonight colorscheme to work
+vim.opt.background     = "dark"             -- colorschemes that can be both light or dark will use the dark mode
+vim.opt.signcolumn     = "yes"              -- show sign column such that text doesn't shift
 
 vim.opt.backspace      = "indent,eol,start" -- allow backspace on indent, end of line or inset mode start position
 
@@ -41,3 +41,12 @@ vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default regis
 -- Split window behavior
 vim.opt.splitright = true -- split window to the right as default
 vim.opt.splitbelow = true -- split window bottom as default
+
+-- auto commands
+vim.api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight when copying text',
+    group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
