@@ -38,6 +38,7 @@ return {
             }),
             -- source for autocompletion, ORDER MATTERS
             sources = cmp.config.sources({
+                { name = 'otter' },
                 { name = 'nvim_lsp' }, -- lsp
                 { name = 'luasnip' },  -- snippets
                 { name = 'buffer' },   -- text within current buffer

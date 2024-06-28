@@ -30,7 +30,7 @@ return {
                 'rust_analyzer',
                 'ruff_lsp',
                 'lua_ls',
-                'pyright'
+                'pyright',
             },
         })
 
@@ -39,7 +39,8 @@ return {
                 'prettier',
                 'stylua',
                 'ruff',
-                'debugpy'
+                'debugpy',
+                'mypy',
             },
         })
     end,

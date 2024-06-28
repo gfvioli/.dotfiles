@@ -72,7 +72,11 @@ return {
         })
 
         -- used to enable autocompletion (assign to every lsp server config)
-        local capabilities = cmp_nvim_lsp.default_capabilities()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+        capabilities = vim.tbl_deep_extend('force', capabilities, cmp_nvim_lsp.default_capabilities())
+
+        capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
         local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
         for type, icon in pairs(signs) do
@@ -121,7 +125,7 @@ return {
                 python = {
                     analysis = {
                         ignore = ({ '*' }),
-                        typeCheckingMode = 'off',
+                        -- typeCheckingMode = 'off',
                     }
                 }
             }
