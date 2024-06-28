@@ -45,8 +45,16 @@ vim.opt.splitbelow = true -- split window bottom as default
 -- auto commands
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when copying text',
-    group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+    group = vim.api.nvim_create_augroup('text-yank', { clear = true }),
     callback = function()
         vim.highlight.on_yank()
+    end,
+})
+
+vim.api.nvim_create_autocmd('TermOpen', {
+    desc = 'Remove line numbers from terminal',
+    group = vim.api.nvim_create_augroup('termianl-open', {clear = true}),
+    callback = function()
+        vim.wo.number = false
     end,
 })
