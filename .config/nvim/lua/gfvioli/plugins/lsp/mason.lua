@@ -26,7 +26,6 @@ return {
 
         mason_lspconfig.setup({
             ensure_installed = {
-                'ruff',
                 'rust_analyzer',
                 'ruff_lsp',
                 'lua_ls',
@@ -38,7 +37,6 @@ return {
             ensure_installed = {
                 'prettier',
                 'stylua',
-                'ruff',
                 'debugpy',
                 'mypy',
             },
