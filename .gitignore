@@ -1,2 +1,3 @@
 .config/gh
 lazy-lock.json
+*.pyc
