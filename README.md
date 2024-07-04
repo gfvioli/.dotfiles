@@ -167,6 +167,13 @@ I'm currently using the UV pip installer now, is a fast python package installer
 pip install uv
 ```
 
+## Installing NodeJS
+You need to install NodeJS for pyright and prettier work later. For it you need to add the repository to the sources list before `sudo apt install`
+```bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
 ## [Neovim](https://github.com/neovim/neovim)
 I like to install Neovim early in the process because going forwards, there will be multiple times where the `~/.zshrc` file requires modfication. Thus it will be easier to do with your neovim config already done.
 
@@ -177,9 +184,22 @@ sudo apt-get install ninja-build gettext cmake unzip curl build-essential
 ```
 
 ### Installing Neovim
-1. `git clone https://github.com/neovim/neovim` and make sure you are in the branch of the release you want to build.
-2. `cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo` this will take a while as it generating the wheel to install neovim.
-3. `sudo make install`. In case this doesn't work, you can alternative use `cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb` to ensure clean removal of installed files.
+1. Make sure you are in the branch of the release you want to build. 
+```bash 
+git clone https://github.com/neovim/neovim
+```
+2. This will take a while as it generating the wheel to install neovim. 
+```bash
+cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+```
+3. Install the wheel
+```bash
+sudo make install
+```
+4. If step 3 didn't work, you can use this alternative to ensure clean removal of installed files. 
+```bash
+cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
+```
 
 
 
