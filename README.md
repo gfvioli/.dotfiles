@@ -59,9 +59,9 @@ To use the properly, I need to install [GNU Stow](https://www.gnu.org/software/s
 sudo apt-get install stow
 ```
 
-Then I can clone my dotfiles repo
+Then I can clone my dotfiles repo into my `$HOME` directory
 ```bash
-git clone https://github.com/gfvioli/dotfiles.git
+git clone git@github.com/gfvioli/dotfiles.git
 ```
 
 Once I have cloned the repo, I can use stow to populate all my configuration files. \
