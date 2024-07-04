@@ -141,7 +141,7 @@ _fzf_compgen_dir() {
 }
 
 # Adding fzf-git
-source ~/programs/fzf-git.sh/fzf-git.sh
+source ~/fzf-git.sh/fzf-git.sh
 
 # setting BAT theme (better cat)
 export BAT_THEME=tokyonight_night
@@ -188,3 +188,7 @@ export PATH="$PATH:/usr/local/bin/tldr"
 # --- setting up zoxide ---
 eval "$(zoxide init --cmd cd zsh)"
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
