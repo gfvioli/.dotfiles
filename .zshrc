@@ -141,7 +141,7 @@ _fzf_compgen_dir() {
 }
 
 # Adding fzf-git
-source ~/programs/fzf-git.sh/fzf-git.sh
+source ~/fzf-git.sh/fzf-git.sh
 
 # setting BAT theme (better cat)
 export BAT_THEME=tokyonight_night
