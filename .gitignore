@@ -1,3 +1,5 @@
 .config/gh
 lazy-lock.json
 *.pyc
+.config/obsidian
+.config/neofetch
