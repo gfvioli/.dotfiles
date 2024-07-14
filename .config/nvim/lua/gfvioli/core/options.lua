@@ -38,6 +38,9 @@ vim.opt.backspace      = "indent,eol,start" -- allow backspace on indent, end of
 -- Uncomment the following line to user the system clipboard
 vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
+-- Concealer for Neorg & Obsidian
+vim.o.conceallevel = 2
+
 -- Split window behavior
 vim.opt.splitright = true -- split window to the right as default
 vim.opt.splitbelow = true -- split window bottom as default
@@ -53,7 +56,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.api.nvim_create_autocmd('TermOpen', {
     desc = 'Remove line numbers from terminal',
-    group = vim.api.nvim_create_augroup('termianl-open', {clear = true}),
+    group = vim.api.nvim_create_augroup('termianl-open', { clear = true }),
     callback = function()
         vim.wo.number = false
     end,
