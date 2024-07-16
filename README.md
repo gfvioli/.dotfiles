@@ -391,6 +391,7 @@ echo 'eval $(thefuck --alias fk)' >> ~/.zshrc
 Terminal multiplexer: it enables a numbers of terminals to be created, accessed and controlled from a single screen.
 ```bash
 sudo apt install tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
 My tmux configuration file looks like this:
@@ -448,6 +449,7 @@ set -g @continuum-restore 'on'
 
 run '~/.tmux/plugins/tpm/tpm'
 ```
+After putting the installing tmux and tpm and putting the config in place, open a tmux session and press "Ctrl-a + r" to reload config and "Ctrl-a + I" to install al plugins.
 
 ### [lazygit](https://github.com/jesseduffield/lazygit)
 Really nice TUI for git operations, particularly useful for complex git commands.
