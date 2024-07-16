@@ -4,13 +4,14 @@ return {
     dependencies = {
         'mfussenegger/nvim-dap-python',
         'nvim-neotest/nvim-nio',
+        'nvim-neotest/neotest',
+        'nvim-neotest/neotest-python',
         {
             'rcarriga/nvim-dap-ui',
             config = function()
                 local dap = require('dap')
                 local dapui = require('dapui')
 
-                dapui.setup()
                 dap.listeners.after.event_initialized['dapui_config'] = function()
                     dapui.open()
                 end
@@ -28,5 +29,18 @@ return {
     config = function()
         local path = '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
         require('dap-python').setup(path)
+
+        require('neotest').setup({
+            adapters = {
+                require('neotest-python')({
+                    dap = {
+                        justMyCode = false,
+                        console = 'integratedTerminal',
+                    },
+                    args = { '--log-level', 'DEBUG', '--quiet' },
+                    runner = 'pytest',
+                })
+            }
+        })
     end,
 }

@@ -9,12 +9,12 @@ return {
     config = function()
         local obsidian = require('obsidian')
         obsidian.setup({
-            workspaces = {
-                {
-                    name = 'Obsidian Vault',
-                    path = '/mnt/d/OneDrive/Documentos/Obsidian Vault/',
-                }
-            },
+            -- workspaces = {
+            --     {
+            --         name = 'Obsidian Vault',
+            --         path = '/mnt/d/OneDrive/Documentos/Obsidian Vault/',
+            --     }
+            -- },
 
             completions = {
                 nvimp_cmp = true,

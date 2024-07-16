@@ -10,9 +10,9 @@ return {
         keymap.set("n", "<leader>a", mark.add_file, { desc = "Add file to harpoon register" })
         keymap.set("n", "<C-e>", ui.toggle_quick_menu, { desc = "Toggle harpoon quick menu" })
 
-        keymap.set("n", "<C-h>", function() ui.nav_file(1) end, { desc = "Go to harpoon file 1" })
-        keymap.set("n", "<C-j>", function() ui.nav_file(2) end, { desc = "Go to harpoon file 2" })
-        keymap.set("n", "<C-k>", function() ui.nav_file(3) end, { desc = "Go to harpoon file 3" })
-        keymap.set("n", "<C-l>", function() ui.nav_file(4) end, { desc = "Go to harpoon file 4" })
+        keymap.set("n", "<M-h>", function() ui.nav_file(1) end, { desc = "Go to harpoon file 1" })
+        keymap.set("n", "<M-j>", function() ui.nav_file(2) end, { desc = "Go to harpoon file 2" })
+        keymap.set("n", "<M-k>", function() ui.nav_file(3) end, { desc = "Go to harpoon file 3" })
+        keymap.set("n", "<M-l>", function() ui.nav_file(4) end, { desc = "Go to harpoon file 4" })
     end,
 }
