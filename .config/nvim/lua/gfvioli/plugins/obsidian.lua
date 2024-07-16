@@ -8,13 +8,20 @@ return {
     },
     config = function()
         local obsidian = require('obsidian')
+        local vault_path = vim.loop.os_getenv("OBSIDIAN_VAULT_PATH")
+
+        if not vault_path then
+            vim.notify("OBSIDIAN_VAULT_PATH environment variable is not set", vim.log.levels.ERROR)
+            return
+        end
+
         obsidian.setup({
-            -- workspaces = {
-            --     {
-            --         name = 'Obsidian Vault',
-            --         path = '/mnt/d/OneDrive/Documentos/Obsidian Vault/',
-            --     }
-            -- },
+            workspaces = {
+                {
+                    name = 'Obsidian Vault',
+                    path = vault_path,
+                }
+            },
 
             completions = {
                 nvimp_cmp = true,
