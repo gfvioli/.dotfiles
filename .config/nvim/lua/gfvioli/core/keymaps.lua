@@ -5,12 +5,12 @@ local keymap = vim.keymap -- to decrease amount of typing
 -- Basic rebinds
 keymap.set('i', 'kj', '<ESC>', { desc = 'Exit insert mode with jk' })
 keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
-keymap.set('x', '<leader>p', '\'_dP', { desc = 'Paste without loosing current paste buffer' })
-keymap.set('n', '<leader>y', '\'+y', { desc = 'Copy to system register' })
-keymap.set('v', '<leader>y', '\'+y', { desc = 'Copy to system register' })
-keymap.set('n', '<leader>Y', '\'+Y', { desc = 'Copy to system register' })
-keymap.set('n', '<leader>d', '\'_d', { desc = 'Delete into void register' })
-keymap.set('v', '<leader>d', '\'_d', { desc = 'Delete into void register' })
+keymap.set('x', '<leader>p', '\"_dP', { desc = 'Paste without loosing current paste buffer' })
+keymap.set('n', '<leader>y', '\"+y', { desc = 'Copy to system register' })
+keymap.set('v', '<leader>y', '\"+y', { desc = 'Copy to system register' })
+keymap.set('n', '<leader>Y', '\"+Y', { desc = 'Copy to system register' })
+keymap.set('n', '<leader>d', '\"_d', { desc = 'Delete into void register' })
+keymap.set('v', '<leader>d', '\"_d', { desc = 'Delete into void register' })
 keymap.set('n', '<leader><leader>', function() vim.cmd('so') end, { desc = 'Source current file' })
 keymap.set('n', '<leader>ex', '<cmd>!chmod +x %<CR>', { desc = 'Make current file executable' })
 
@@ -46,5 +46,5 @@ keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = 'Go to previous tab' })
 keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' })
 
 -- Jupyter notebook remaps
-keymap.set({ 'n', 'i' }, '<m-i>', '<esc>i```{python}<cr>```<esc>0', { desc = '[I]nsert chunk code'})
-keymap.set('n', '<leader>ci', ':vsplit term://ipython<cr>', {desc = '[C]reate [I]Python terminal'})
+keymap.set({ 'n', 'i' }, '<m-i>', '<esc>i```{python}<cr>```<esc>0', { desc = '[I]nsert chunk code' })
+keymap.set('n', '<leader>ci', ':vsplit term://ipython<cr>', { desc = '[C]reate [I]Python terminal' })
