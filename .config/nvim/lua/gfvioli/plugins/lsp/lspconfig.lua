@@ -11,9 +11,6 @@ return {
         -- import lspconfig plugin
         local lspconfig = require("lspconfig")
 
-        -- import mason_lspconfig plugin
-        local mason_lspconfig = require("mason-lspconfig")
-
         -- import cmp_nvim_lsp plugin
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -101,30 +98,22 @@ return {
             }
         })
 
-        mason_lspconfig.setup_handlers({
-            function(server_name)
-                lspconfig[server_name].setup({
-                    capabilities = capabilities,
-                })
-            end,
-            ["lua_ls"] = function()
-                lspconfig["lua_ls"].setup({
-                    capabilities = capabilities,
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { "vim" },
-                            },
-                            completion = {
-                                callSnippet = "Replace",
-                            },
-                        },
+        lspconfig.lua_ls.setup({
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { "vim" },
                     },
-                })
-            end,
+                    completion = {
+                        callSnippet = "Replace",
+                    },
+                },
+            },
         })
 
         lspconfig.ruff_lsp.setup({
+            capabilities = capabilities,
             init_options = {
                 settings = {
                     -- Any extra CLI arguments for `ruff` go here.
