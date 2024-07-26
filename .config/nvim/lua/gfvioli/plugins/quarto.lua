@@ -112,7 +112,7 @@ return {
         },
         config = function(_, opts)
             require('img-clip').setup(opts)
-            vim.keymap.set('n', '<leader>ii', ':PasteImage<cr>', { desc = 'insert [i]mage from clipboard' })
+            vim.keymap.set('n', '<leader>ii', ':PasteImage<cr>', { desc = '[I]nsert [I]mage from clipboard' })
         end,
     },
     {
@@ -125,14 +125,14 @@ return {
             vim.g.molten_auto_open_output = false
         end,
         keys = {
-            { '<leader>mi', ':MoltenInit<cr>',           desc = '[m]olten [i]nit' },
+            { '<leader>mi', ':MoltenInit<cr>',           desc = '[M]olten [I]nit' },
             {
                 '<leader>mv',
                 ':<C-u>MoltenEvaluateVisual<cr>',
                 mode = 'v',
                 desc = 'molten eval visual',
             },
-            { '<leader>mr', ':MoltenReevaluateCell<cr>', desc = 'molten re-eval cell' },
+            { '<leader>mr', ':MoltenReevaluateCell<cr>', desc = '[M]olten [R]e-eval cell' },
         },
     },
 }

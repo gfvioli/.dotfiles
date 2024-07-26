@@ -5,7 +5,7 @@ return {
         local lint = require("lint")
 
         lint.linters_by_ft = {
-            python = { "ruff" },
+            { python = 'ruff' },
         }
 
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -17,8 +17,8 @@ return {
             end,
         })
 
-        vim.keymap.set("n", "<leader>l", function()
+        vim.keymap.set("n", "<leader>ln", function()
             lint.try_lint()
-        end, { desc = "Trigger linting for current file" })
+        end, { desc = "Trigger [L]inting for current file [N]ow" })
     end,
 }
