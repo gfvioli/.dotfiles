@@ -34,6 +34,11 @@ return {
 
         local dap = require('dap')
 
+        local keymap = vim.keymap
+        keymap.set('n', '<leader>db', '<cmd> DapToggleBreakpoint<cr>', { desc = '[D]ebug [B]reakpoint' })
+        keymap.set('n', '<leader>dpr', function() require('dap-python').test_method() end,
+            { desc = '[D]ebug [P]ython [R]un' })
+
         require('neotest').setup({
             adapters = {
                 require('neotest-python')({

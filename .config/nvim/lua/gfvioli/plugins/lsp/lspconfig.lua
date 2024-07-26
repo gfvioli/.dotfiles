@@ -137,12 +137,14 @@ return {
             },
         })
 
-        lspconfig.ruff_lsp.setup({
+        lspconfig.ruff.setup({
             capabilities = capabilities,
             init_options = {
                 settings = {
                     -- Any extra CLI arguments for `ruff` go here.
-                    args = {},
+                    args = {
+                        organizeImports = true,
+                    },
                 }
             }
         })

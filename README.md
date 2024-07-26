@@ -201,8 +201,6 @@ sudo make install
 cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 ```
 
-
-
 ## CLI tools
 This tools are meant to make your terminal much more powerful
 
@@ -238,9 +236,10 @@ Alternatively, you can create your own theme using [the fzf theme generator](htt
 
 ### [find](https://github.com/sharkdp/fd)
 Is a simple, fast and user-friendly aternative to find.
-To install download the binary from the relase [page](https://github.com/sharkdp/fd/releases) and then execute
 ```bash
-sudo dpkg -i /<your_downloads_folder>/fd-musl_10.1.0_amd64.deb
+FIND_VERSION = $(curl -s "https://api.github.com/repos/sharkdp/fd/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo ~/find.deb "https://github.com/sharkdp/fd/releases/latest/download/fd-musl_${FIND_VERSION}_amd64.deb"
+sudo dpkg -i ~/find.deb
 ```
 
 Once installed, you use this commands to use fzf
@@ -277,12 +276,24 @@ source ~/fzf-git.sh/fzf-git.sh
 4. Save and in the terminal run `source ~/.zshrc`
 
 
+### [lazygit](https://github.com/jesseduffield/lazygit)
+Really nice TUI for git operations, particularly useful for complex git commands.
+```bash
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit /usr/local/bin
+rm -rf ~/lazygit ~/lazygit.tar.gz
+```
+
 ### [ripgrep](https://github.com/BurntSushi/ripgrep)
-This allows for Live Grep, particularly inside Neovim. 
+This allows for Live Grep, needed for telescope. 
 NOTE: this app is installed under /usr/bin/rg
 ```bash
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb
-sudo dpkg -i ripgrep_14.1.0-1_amd64.deb
+RG_VERSION = $(curl -s "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo ~/ripgrep.deb "https://github.com/BurntSushi/ripgrep/releases/download/${RG_VERSION}/ripgrep-${RG_VERSION}-aarch64-unknown-linux-gnu.tar.gz"
+sudo dpkg -i ~/ripgrep.deb
+rm -rf ~/ripgrep.deb
 ```
 
 ### [bat](https://github.com/sharkdp/bat)
@@ -304,7 +315,10 @@ echo 'export BAT_THEME=tokyonight_night' >> ~/.zshrc
 ### [delta](https://github.com/dandavison/delta/)
 Download the package from the relases [page](https://github.com/dandavison/delta/releases) then use dpkg -i to install it.
 ```bash
-sudo dpkg -i /<your_downloads_dir>/git-delta-musl_0.17.0_amd64.deb
+DELTA_VERSION = $(curl -s "https://api.github.com/repos/dandavison/delta/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo ~/delta.deb "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/git-delta_${DELTA_VERSION}_amd64.deb"
+sudo dpkg -i ~/delta.deb
+rm -rf ~/delta.deb
 ```
 
 Once done, add this to your `.gitconfig`
@@ -374,10 +388,13 @@ _fzf_comprun() {
 ```
 
 ### [tldr](https://github.com/tldr-pages/tldr)
-This is a better version of man pages. Make sure to install the rust GNU based binary for better performance, find it [here](https://github.com/tldr-pages/tlrc/releases/tag/v1.9.2), and install following the instructions
+This is a better version of man pages. Make sure to install the rust GNU based binary for better performance, install following the commands
 ```bash
-tar xf /<your_downloads_dir>/tlrc-v1.9.2-x86_64-unknown-linux-gnu.tar.gz tldr
-sudo install tldr
+TLDR_VERSION=$(curl -s "https://https://api.github.com/repos/tldr-pages/tlrc/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo ~/tldr.tar.gz "https://github.com/tldr-pages/tlrc/releases/download/v${TLDR_VERSION}/tlrc-v${TLDR_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+tar xf ~/tldr.tar.gz
+sudo install tldr /usr/local/bin
+rm -rf ~/tldr.tar.gz
 ```
 
 ### [The Fuck](https://github.com/nvbn/thefuck)
@@ -451,11 +468,14 @@ run '~/.tmux/plugins/tpm/tpm'
 ```
 After putting the installing tmux and tpm and putting the config in place, open a tmux session and press "Ctrl-a + r" to reload config and "Ctrl-a + I" to install al plugins.
 
-### [lazygit](https://github.com/jesseduffield/lazygit)
-Really nice TUI for git operations, particularly useful for complex git commands.
+
+### [Quarto](https://github.com/quarto-dev/quarto-cli)
+
+Open source scientific and technical publishing system, to mix markdown and code.
+
 ```bash
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-tar xf lazygit.tar.gz lazygit
-sudo install lazygit /usr/local/bin
+QUARTO_VERSION=$(curl -s "https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest" | grep -Po '"tag_name": "v\K[^"]*') 
+curl -Lo ~/quarto.deb "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb"
+sudo dpkg -i ~/quarto.deb
+rm -rf ~/quarto.deb
 ```
