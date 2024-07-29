@@ -14,6 +14,8 @@ return {
         -- import cmp_nvim_lsp plugin
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
+        local mason_lspconfig = require('mason-lspconfig')
+
         local keymap = vim.keymap -- to reduce typing
 
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -43,7 +45,7 @@ return {
                 opts.desc = "See available code actions"
                 keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
-                opts.desc = "Smart rename"
+                opts.desc = "Smart [R]ename"
                 keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
                 opts.desc = "Show buffer diagnostics"
@@ -52,11 +54,11 @@ return {
                 opts.desc = "Show line diagnostic"
                 keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
-                opts.desc = "Go to previous diagnostic"
-                keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
                 opts.desc = "Go to next diagnostic"
                 keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+
+                opts.desc = "Go to previous diagnostic"
+                keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 
                 opts.desc = "Show documentation for what is under cursor"
                 keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -76,6 +78,7 @@ return {
 
         capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
+        -- NOTE: Delete this when new config is battle tested
         -- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
         -- for type, icon in pairs(signs) do
         --     local hl = "DiagnosticSign" .. type
@@ -123,46 +126,61 @@ return {
             table.insert(lua_plugin_paths, resource_path .. '/lua-plugin/plugin.lua')
         end
 
-        lspconfig.lua_ls.setup({
-            capabilities = capabilities,
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { "vim" },
+        mason_lspconfig.setup_handlers({
+            -- default handler for installed servers
+            function(server_name)
+                lspconfig[server_name].setup({
+                    capabilities = capabilities,
+                })
+            end,
+            ['lua_ls'] = function()
+                lspconfig.lua_ls.setup({
+                    capabilities = capabilities,
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = { "vim" },
+                                disable = { 'missing-fields' },
+                            },
+                            completion = {
+                                callSnippet = "Replace",
+                            },
+                        },
                     },
-                    completion = {
-                        callSnippet = "Replace",
-                    },
-                },
-            },
-        })
+                })
+            end,
 
-        lspconfig.ruff.setup({
-            capabilities = capabilities,
-            init_options = {
-                settings = {
-                    -- Any extra CLI arguments for `ruff` go here.
-                    args = {
-                        organizeImports = true,
-                    },
-                }
-            }
-        })
-
-        lspconfig.pyright.setup({
-            capabilities = capabilities,
-            settings = {
-                pyright = {
-                    disableOrganizeImports = true,
-                    disableTaggedHints = true,
-                },
-                python = {
-                    analysis = {
-                        ignore = ({ '*' }),
-                        -- typeCheckingMode = 'off',
+            ['ruff'] = function()
+                lspconfig.ruff.setup({
+                    capabilities = capabilities,
+                    init_options = {
+                        settings = {
+                            -- Any extra CLI arguments for `ruff` go here.
+                            args = {
+                                organizeImports = true,
+                            },
+                        }
                     }
-                }
-            }
+                })
+            end,
+
+            ['pyright'] = function()
+                lspconfig.pyright.setup({
+                    capabilities = capabilities,
+                    settings = {
+                        pyright = {
+                            disableOrganizeImports = true,
+                            disableTaggedHints = true,
+                        },
+                        python = {
+                            analysis = {
+                                ignore = ({ '*' }),
+                                -- typeCheckingMode = 'off',
+                            }
+                        }
+                    }
+                })
+            end,
         })
     end,
 }
