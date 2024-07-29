@@ -6,6 +6,7 @@ return {
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         { 'nvim-tree/nvim-web-devicons',              enabled = vim.g.have_nerd_font },
         'folke/todo-comments.nvim',
+        'nvim-telescope/telescope-dap.nvim',
     },
     config = function()
         local telescope = require('telescope')
@@ -28,6 +29,7 @@ return {
         telescope.load_extension('fzf')
         telescope.load_extension('harpoon')
         telescope.load_extension('git_worktree')
+        telescope.load_extension('dap')
 
         local keymap = vim.keymap
 
@@ -62,5 +64,8 @@ return {
             end,
             { desc = '[S]earch [/] in Open Files' }
         )
+        keymap.set('n', '<leader>uc', builtin.colorscheme, { desc = '[U]pdate [C]olorscheme' })
+        keymap.set('n', '<leader>fdc', function() require("telescope").extensions.dap.configurations() end,
+            { desc = '[F]ind [D]ebug [C]onfiguration' })
     end,
 }
