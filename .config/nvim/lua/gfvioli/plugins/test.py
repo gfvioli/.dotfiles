@@ -8,3 +8,7 @@ def test(n: int):
 
 
 test("foo")
+
+
+def test_1():
+    assert 1 == 1

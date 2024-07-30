@@ -7,16 +7,16 @@ return {
     },
     config = function()
         -- import nvim-treesitter
-        local treesitter = require("nvim-treesitter.configs") 
+        local treesitter = require("nvim-treesitter.configs")
 
         -- configure treesitter
         treesitter.setup({
             highlight = {
                 enable = true -- enable syntax highlighting
             },
-            
+
             -- enable indentation
-            indent = { enable = true},
+            indent = { enable = true },
 
             autotag = {
                 enable = true,

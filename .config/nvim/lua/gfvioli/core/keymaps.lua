@@ -21,7 +21,7 @@ keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz', { desc = 'List next' })
 keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz', { desc = 'List prev' })
 
 -- Replacement
-keymap.set('n', '<leader>c', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', { desc = 'Change current word' })
+keymap.set('n', '<leader>cw', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', { desc = 'Change current word' })
 
 -- Movement
 keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
