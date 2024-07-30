@@ -4,7 +4,7 @@ return {
     dependencies = {
         'nvim-lua/plenary.nvim',
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-        { 'nvim-tree/nvim-web-devicons',              enabled = vim.g.have_nerd_font },
+        -- { 'nvim-tree/nvim-web-devicons',              enabled = vim.g.have_nerd_font },
         'folke/todo-comments.nvim',
         'nvim-telescope/telescope-dap.nvim',
     },
@@ -33,19 +33,29 @@ return {
 
         local keymap = vim.keymap
 
-        keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Fuzzy [F]ind [F]iles in cwd' })
-        keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Fuzzy find git files' })
-        keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<CR>', { desc = 'Fuzzy [R]ind [R]ecent files' })
-        keymap.set('n', '<leader>fs', '<cmd>Telescope live_grep<CR>', { desc = 'Fuzzy [F]ind [S]tring in cwd' })
-        keymap.set('n', '<leader>fc', '<cmd>Telescope grep_string<CR>', { desc = '[F]ind string under [C]ursor in cwd' })
+        keymap.set('n', '<leader>ff',
+            function() builtin.find_files { file_ignore_patterns = { '^explorations/' }, prompt_title = 'Find Files excl. explorations' } end,
+            { desc = 'Fuzzy [F]ind [F]iles in cwd excl. explorations' })
+        keymap.set('n', '<leader>fe',
+            function() builtin.find_files { prompt_title = '[F]ind [F]iles in cwd incl. explorations' } end,
+            { desc = 'Fuzzy [F]ind [F]iles in cwd incl. [E]xplorations' })
+        keymap.set('n', '<leader>fE',
+            function() builtin.find_files { cwd = vim.fn.getcwd() .. '/explorations/', prompt_title = 'Find Files in explorations' } end,
+            { desc = 'Fuzzy [F]ind [F]iles in [E]xplorations folder' })
+        keymap.set('n', '<leader>fg', builtin.git_files, { desc = 'Fuzzy [F]ind [G]it files' })
+        keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Fuzzy [R]ind [R]ecent files' })
+        keymap.set('n', '<leader>fs', builtin.live_grep, { desc = 'Fuzzy [F]ind [S]tring in cwd' })
+        keymap.set('n', '<leader>fc', builtin.grep_string, { desc = '[F]ind string under [C]ursor in cwd' })
         keymap.set('n', '<leader>ft', '<cmd>TodoTelescope<CR>', { desc = '[F]ind [T]ODO comments' })
-        keymap.set('n', '<leader>fwt', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",
+        keymap.set('n', '<leader>fwt', telescope.extensions.git_worktree.git_worktrees,
             { desc = "[F]ind between [W]ork[T]rees" })
-        keymap.set('n', '<leader>cwt', "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
+        keymap.set('n', '<leader>cwt', telescope.extensions.git_worktree.create_git_worktree,
             { desc = "[C]reate new [W]ork[T]ree" })
         keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
         keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+        keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })
         keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+        keymap.set('n', '<leader>sa', builtin.autocommands, { desc = '[S]earch [A]utocommands' })
         keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end,
             { desc = '[S]earch [N]eovim config files' })
         keymap.set('n', '<leader>/',
@@ -65,7 +75,7 @@ return {
             { desc = '[S]earch [/] in Open Files' }
         )
         keymap.set('n', '<leader>uc', builtin.colorscheme, { desc = '[U]pdate [C]olorscheme' })
-        keymap.set('n', '<leader>fdc', function() require("telescope").extensions.dap.configurations() end,
+        keymap.set('n', '<leader>fdc', function() telescope.extensions.dap.configurations() end,
             { desc = '[F]ind [D]ebug [C]onfiguration' })
     end,
 }

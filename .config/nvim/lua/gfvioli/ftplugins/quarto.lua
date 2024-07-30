@@ -1,4 +1,4 @@
-vim.b.slime_cell_delimitr = '```'
+vim.b.slime_cell_delimiter = '```'
 local api = vim.api
 local ts = vim.treesitter
 
@@ -37,7 +37,7 @@ local parsername = 'markdown'
 local parser = ts.get_parser(buf, parsername)
 local tsquery = '(fenced_code_block)@codecell'
 
--- vim.api.nvim_set_hl(0, '@markup.codecell', { bg = '#000055' })
+vim.api.nvim_set_hl(0, '@markup.codecell', { bg = '#000055' })
 vim.api.nvim_set_hl(0, '@markup.codecell', {
     link = 'CursorLine',
 })
