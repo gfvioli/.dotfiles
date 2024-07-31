@@ -91,10 +91,10 @@ local insert_bash_chunk = function()
 end
 
 keymap.set({ 'n', 'i' }, '<m-p>', insert_py_chunk, { desc = '[I]nsert [P]ython chunk' })
-keymap.set({ 'n', 'i' }, '<m-r>', insert_r_chunk, { desc = '[I]nsert [R] chunk' })
-keymap.set({ 'n', 'i' }, '<m-j>', insert_julia_chunk, { desc = '[I]nsert [J]ulia chunk' })
+keymap.set({ 'n', 'i' }, '<m-R>', insert_r_chunk, { desc = '[I]nsert [R] chunk' })
+keymap.set({ 'n', 'i' }, '<m-J>', insert_julia_chunk, { desc = '[I]nsert [J]ulia chunk' })
 keymap.set({ 'n', 'i' }, '<m-l>', insert_lua_chunk, { desc = '[I]nsert [L]ua chunk' })
-keymap.set({ 'n', 'i' }, '<m-b>', insert_bash_chunk, { desc = '[I]nsert [B]ash chunk' })
+keymap.set({ 'n', 'i' }, '<m-B>', insert_bash_chunk, { desc = '[I]nsert [B]ash chunk' })
 
 local function new_terminal(lang)
     vim.cmd('vsplit term://' .. lang)
