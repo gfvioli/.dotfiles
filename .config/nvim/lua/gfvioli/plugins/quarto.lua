@@ -1,3 +1,4 @@
+-- Defining helper functions
 return {
     {
         'quarto-dev/quarto-nvim',
@@ -9,7 +10,30 @@ return {
                 dependencies = {
                     'neovim/nvim-lspconfig',
                     'nvim-treesitter/nvim-treesitter',
-                }
+                },
+                config = function()
+                    local function get_otter_symbols_lang()
+                        local otterkeeper = require 'otter.keeper'
+                        local main_nr = vim.api.nvim_get_current_buf()
+                        local langs = {}
+                        for i, l in ipairs(otterkeeper.rafts[main_nr].languages) do
+                            langs[i] = i .. ': ' .. l
+                        end
+                        -- promt to choose one of langs
+                        local i = vim.fn.inputlist(langs)
+                        local lang = otterkeeper.rafts[main_nr].languages[i]
+                        local params = {
+                            textDocument = vim.lsp.util.make_text_document_params(),
+                            otter = {
+                                lang = lang
+                            }
+                        }
+                        -- don't pass a handler, as we want otter to use it's own handlers
+                        vim.lsp.buf_request(main_nr, vim.lsp.protocol.Methods.textDocument_documentSymbol, params, nil)
+                    end
+
+                    vim.keymap.set("n", "<leader>os", get_otter_symbols_lang, { desc = "[O]tter [S]ymbols" })
+                end,
             },
         },
         ft = { 'quarto' },
@@ -51,54 +75,38 @@ return {
         'jpalardy/vim-slime',
         dev = false,
         init = function()
-            -- vim.b['quarto_is_python_chunk'] = false
-            -- Quarto_is_in_python_chunk = function()
-            --     require('otter.tools.functions').is_otter_language_context 'python'
-            -- end
-            --
-            -- vim.cmd [[
-            --    let g:slime_dispatch_ipython_pause = 100
-            --    function SlimeOverride_EscapeText_quarto(text)
-            --    call v:lua.Quarto_is_in_python_chunk()
-            --    if exists('g:slime_python_ipython') && len(split(a:text,"\n")) > 1 && b:quarto_is_python_chunk && !(exists('b:quarto_is_r_mode') && b:quarto_is_r_mode)
-            --    return ["%cpaste -q\n", g:slime_dispatch_ipython_pause, a:text, "", "\n"]
-            --    else
-            --    if exists('b:quarto_is_r_mode') && b:quarto_is_r_mode && b:quarto_is_python_chunk
-            --    return [a:text, "\n"]
-            --    else
-            --    return [a:text]
-            --    end
-            --    end
-            --    endfunction
-            --    ]]
-
-            vim.g.slime_target = 'neovim'
-            -- vim.g.slime_no_mappings = true
-            vim.g.slime_python_ipython = 1
-            vim.g.slime_dispatch_ipython_pause = 100
-            vim.g.slime_cell_delimiter = '# \\s\\=%%'
+            vim.b['quarto_is_python_chunk'] = false
+            Quarto_is_in_python_chunk = function()
+                require('otter.tools.functions').is_otter_language_context 'python'
+            end
 
             vim.cmd [[
-            function! _EscapeText_python(text)
-              if slime#config#resolve("python_ipython") && len(split(a:text,"\n")) > 1
-                return ["%cpaste -q\n", slime#config#resolve("dispatch_ipython_pause"), a:text, "--\n"]
-              else
-                let empty_lines_pat = '\(^\|\n\)\zs\(\s*\n\+\)\+'
-                let no_empty_lines = substitute(a:text, empty_lines_pat, "", "g")
-                let dedent_pat = '\(^\|\n\)\zs'.matchstr(no_empty_lines, '^\s*')
-                let dedented_lines = substitute(no_empty_lines, dedent_pat, "", "g")
-                let except_pat = '\(elif\|else\|except\|finally\)\@!'
-                let add_eol_pat = '\n\s[^\n]\+\n\zs\ze\('.except_pat.'\S\|$\)'
-                return substitute(dedented_lines, add_eol_pat, "\n", "g")
-              end
-            endfunction
+                let g:slime_dispatch_ipython_pause = 100
+                function SlimeOverride_EscapeText_quarto(text)
+                call v:lua.Quarto_is_in_python_chunk()
+                if exists('g:slime_python_ipython') && len(split(a:text,"\n")) > 1 && b:quarto_is_python_chunk && !(exists('b:quarto_is_r_mode') && b:quarto_is_r_mode)
+                return ["%cpaste -q\n", g:slime_dispatch_ipython_pause, a:text, "", "\n"]
+                else
+                if exists('b:quarto_is_r_mode') && b:quarto_is_r_mode && b:quarto_is_python_chunk
+                return [a:text, "\n"]
+                else
+                return [a:text]
+                end
+                end
+                endfunction
             ]]
+
+            vim.g.slime_target = 'neovim'
+            vim.g.slime_no_mappings = true
+            vim.g.slime_python_ipython = 1
+            vim.g.slime_dispatch_ipython_pause = 100
         end,
         config = function()
             vim.g.slime_input_pid = false
             vim.g.slime_suggest_default = true
             vim.g.slime_menu_config = false
             vim.g.slime_neovim_ignore_unlisted = true
+
 
             local function mark_terminal()
                 local job_id = vim.b.terminal_job_id
@@ -108,16 +116,63 @@ return {
             local function set_terminal()
                 vim.fn.call('slime#config', {})
             end
-            vim.keymap.set('n', '<leader>cm', mark_terminal, { desc = '[m]ark terminal' })
-            vim.keymap.set('n', '<leader>cs', set_terminal, { desc = '[s]et terminal' })
-            vim.keymap.set('n', '<leader>qs', function() vim.cmd [[ call slime#send_cell() ]] end,
-                { desc = 'Send code to terminal' })
+            vim.keymap.set('n', '<leader>cm', mark_terminal, { desc = '[C]ode: [M]ark terminal' })
+            vim.keymap.set('n', '<leader>cs', set_terminal, { desc = '[C]ode: [S]et terminal' })
+
+
+            vim.g['quarto_is_r_mode'] = nil
+            vim.g['reticulate_running'] = false
+
+            local function send_cell()
+                if vim.b['quarto_is_r_mode'] == nil then
+                    vim.fn['slime#send_cell']()
+                    return
+                end
+                if vim.b['quarto_is_r_mode'] == true then
+                    vim.g.slime_python_ipython = 0
+                    local is_python = require('otter.tools.functions').is_otter_language_context 'python'
+                    if is_python and not vim.b['reticulate_running'] then
+                        vim.fn['slime#send']('reticulate::repl_python()' .. '\r')
+                        vim.b['reticulate_running'] = true
+                    end
+                    if not is_python and vim.b['reticulate_running'] then
+                        vim.fn['slime#send']('exit' .. '\r')
+                        vim.b['reticulate_running'] = false
+                    end
+                    vim.fn['slime#send_cell']()
+                end
+            end
+
+            local slime_send_region_cmd = ':<C-u>call slime#send_op(visualmode(), 1)<CR>'
+            local function send_region()
+                -- if filetyps is not quarto, just send_region
+                if vim.bo.filetype ~= 'quarto' or vim.b['quarto_is_r_mode'] == nil then
+                    vim.cmd('normal' .. slime_send_region_cmd)
+                    return
+                end
+                if vim.b['quarto_is_r_mode'] == true then
+                    vim.g.slime_python_ipython = 0
+                    local is_python = require('otter.tools.functions').is_otter_language_context 'python'
+                    if is_python and not vim.b['reticulate_running'] then
+                        vim.fn['slime#send']('reticulate::repl_python()' .. '\r')
+                        vim.b['reticulate_running'] = true
+                    end
+                    if not is_python and vim.b['reticulate_running'] then
+                        vim.fn['slime#send']('exit' .. '\r')
+                        vim.b['reticulate_running'] = false
+                    end
+                    vim.cmd('normal' .. slime_send_region_cmd)
+                end
+            end
+
+            vim.keymap.set({ 'n', 'i' }, '<leader><CR>', send_cell, { desc = 'Send code to terminal' })
+            vim.keymap.set('v', '<leader><CR>', send_region, { desc = 'Send code to terminal' })
         end,
     },
     { -- preview equations
         'jbyuki/nabla.nvim',
         keys = {
-            { '<leader>qm', ':lua require"nabla".toggle_virt()<cr>', desc = 'toggle [M]ath equations' }
+            { '<leader>qm', ':lua require("nabla").toggle_virt()<cr>', desc = '[Q]uarto: toggle [M]ath equations' }
         }
     },
     { -- paste an image from the clipboard or drag-and-drop
@@ -162,10 +217,10 @@ return {
         keys = {
             { '<leader>mi', ':MoltenInit<cr>',           desc = '[M]olten [I]nit' },
             {
-                '<leader>mv',
+                '<leader>me',
                 ':<C-u>MoltenEvaluateVisual<cr>',
                 mode = 'v',
-                desc = 'molten eval visual',
+                desc = '[M]olten [E]val visual',
             },
             { '<leader>mr', ':MoltenReevaluateCell<cr>', desc = '[M]olten [R]e-eval cell' },
         },

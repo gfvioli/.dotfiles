@@ -1,7 +1,7 @@
 return {
-    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
     dependencies = {
-        'williamboman/mason-lspconfig.nvim',
+        'williamboman/mason.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
     config = function()
@@ -30,6 +30,7 @@ return {
                 'ruff',
                 'lua_ls',
                 'pyright',
+                'r_language_server',
             },
         })
 
@@ -39,6 +40,8 @@ return {
                 'stylua',
                 'debugpy',
                 'mypy',
+                'tree-sitter-cli',
+                'jupytext',
             },
         })
     end,
