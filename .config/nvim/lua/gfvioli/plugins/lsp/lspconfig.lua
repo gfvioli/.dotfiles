@@ -183,6 +183,19 @@ return {
                     }
                 })
             end,
+
+            ['r_language_server'] = function()
+                lspconfig.r_language_server.setup({
+                    capabilities = capabilities,
+                    settings = {
+                        r = {
+                            lsp = {
+                                rich_documentation = false,
+                            }
+                        }
+                    }
+                })
+            end,
         })
     end,
 }

@@ -3,3 +3,4 @@ lazy-lock.json
 *.pyc
 .config/obsidian
 .config/neofetch
+.profile
