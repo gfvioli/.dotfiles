@@ -33,6 +33,12 @@ return {
                     end
 
                     vim.keymap.set("n", "<leader>os", get_otter_symbols_lang, { desc = "[O]tter [S]ymbols" })
+                    vim.keymap.set("n", "<leader>oe", function() require('otter').export(true) end,
+                        { desc = "[O]tter [E]xport with overwrite" })
+                    vim.keymap.set("n", "<leader>oa", function() require("otter").activate() end,
+                        { desc = "[O]tter [A]ctivate" })
+                    vim.keymap.set('n', '<leader>od', function() require('otter').deactivate() end,
+                        { desc = "[O]tter [D]eactivate" })
                 end,
             },
         },
@@ -42,16 +48,24 @@ return {
             require('quarto').setup({
                 lspFeatures = {
                     enabled = true,
-                    languages = { 'python', 'r' },
+                    languages = { 'python', 'r', 'julia', 'lua' },
                     diagnostics = {
                         enabled = true,
-                        triggers = { 'BufWrite' }
+                        triggers = { 'BufWrite' },
                     },
                     completion = {
-                        enabled = true
+                        enabled = true,
                     },
                 }
             })
+
+            vim.keymap.set('n', '<leader>qm', 'O# %%<CR>', { desc = 'Insert [Q]uarto [M]agic' })
+            vim.keymap.set('n', '<leader>qra', '<cmd>QuartoSendAbove<cr>', { desc = '[Q]uarto [R]un [A]bove' })
+            vim.keymap.set('n', '<leader>qre', '<cmd>QuartoSendAll<cr>', { desc = '[Q]uarto [R]un [E]verything' })
+            vim.keymap.set('n', '<leader>qrb', '<cmd>QuartoSendBelow<cr>', { desc = '[Q]uarto [R]un [B]elow' })
+            vim.keymap.set('n', '<leader>qa', '<cmd>QuartoActivate<cr>', { desc = '[Q]uarto [A]ctivate' })
+            vim.keymap.set('n', '<leader>qp', '<cmd>QuartoPreview<cr>', { desc = '[Q]uarto [P]review' })
+            vim.keymap.set('n', '<leader>qx', '<cmd>QuartoClosePreview<cr>', { desc = '[Q]uarto Preview' })
         end,
     },
     { --directly open ipynb files as quarto docuements and convert back behind the scenes
@@ -83,16 +97,16 @@ return {
             vim.cmd [[
                 let g:slime_dispatch_ipython_pause = 100
                 function SlimeOverride_EscapeText_quarto(text)
-                call v:lua.Quarto_is_in_python_chunk()
-                if exists('g:slime_python_ipython') && len(split(a:text,"\n")) > 1 && b:quarto_is_python_chunk && !(exists('b:quarto_is_r_mode') && b:quarto_is_r_mode)
-                return ["%cpaste -q\n", g:slime_dispatch_ipython_pause, a:text, "", "\n"]
-                else
-                if exists('b:quarto_is_r_mode') && b:quarto_is_r_mode && b:quarto_is_python_chunk
-                return [a:text, "\n"]
-                else
-                return [a:text]
-                end
-                end
+                    call v:lua.Quarto_is_in_python_chunk()
+                        if exists('g:slime_python_ipython') && len(split(a:text,"\n")) > 1 && b:quarto_is_python_chunk && !(exists('b:quarto_is_r_mode') && b:quarto_is_r_mode)
+                            return [g:slime_dispatch_ipython_pause, a:text, "", "\n"]
+                        else
+                        if exists('b:quarto_is_r_mode') && b:quarto_is_r_mode && b:quarto_is_python_chunk
+                            return [a:text, "\n"]
+                        else
+                            return [a:text]
+                        end
+                    end
                 endfunction
             ]]
 
