@@ -101,7 +101,7 @@ local function new_terminal(lang)
 end
 
 local function new_terminal_python()
-    new_terminal 'ipython --no-confirm-exit --matplotlib --nosep --no-banner --classic'
+    new_terminal 'ipython --no-confirm-exit --matplotlib --nosep --no-banner --automagic --classic'
 end
 
 local function new_terminal_r()
@@ -109,7 +109,7 @@ local function new_terminal_r()
 end
 
 local function new_terminal_ipython()
-    new_terminal 'ipython --no-confirm-exit --matplotlib --nosep --no-banner'
+    new_terminal 'ipython --no-confirm-exit --matplotlib --nosep --no-banner --automagic'
 end
 
 local function new_terminal_julia()
@@ -124,5 +124,5 @@ end
 keymap.set({ 'n', 'i' }, '<leader>cp', new_terminal_python, { desc = '[C]ode [P]ython' }) -- less clear than the iPython one
 keymap.set({ 'n', 'i' }, '<leader>ci', new_terminal_ipython, { desc = '[C]ode [I]Python' })
 keymap.set({ 'n', 'i' }, '<leader>cr', new_terminal_r, { desc = '[C]ode [R]' })
-keymap.set({ 'n', 'i' }, '<leader>cj', new_terminal_julia, { desc = '[C]ode [I]Python' })
-keymap.set({ 'n', 'i' }, '<leader>cs', new_terminal_shell, { desc = '[C]ode [I]Python' })
+keymap.set({ 'n', 'i' }, '<leader>cj', new_terminal_julia, { desc = '[C]ode [J]ulia' })
+keymap.set({ 'n', 'i' }, '<leader>ct', new_terminal_shell, { desc = '[C]ode [T]erminal' })
