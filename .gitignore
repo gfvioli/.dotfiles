@@ -4,3 +4,4 @@ lazy-lock.json
 .config/obsidian
 .config/neofetch
 .profile
+.config/btop/btop.conf
