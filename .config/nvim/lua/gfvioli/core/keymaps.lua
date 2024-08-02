@@ -21,7 +21,8 @@ keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz', { desc = 'List next' })
 keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz', { desc = 'List prev' })
 
 -- Replacement
-keymap.set('n', '<leader>cw', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', { desc = 'Change current word' })
+keymap.set('n', '<leader>cw', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>',
+    { desc = '[C]hange current [W]ord' })
 
 -- Movement
 keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
@@ -33,17 +34,17 @@ keymap.set('n', 'n', 'nzzzv', { desc = 'Next search term and centered' })
 keymap.set('n', 'N', 'Nzzzv', { desc = 'Prev search term and centered' })
 
 -- Window management
-keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split window vertically' })
-keymap.set('n', '<leader>sh', '<C-w>s', { desc = 'Split window horizontally' })
-keymap.set('n', '<leader>se', '<C-w>=', { desc = 'Make splits equal size' })
-keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = 'Close current split' })
+keymap.set('n', '<leader>sv', '<C-w>v', { desc = '[S]plit: [V]ertically' })
+keymap.set('n', '<leader>sh', '<C-w>s', { desc = '[S]plit: [H]orizontally' })
+keymap.set('n', '<leader>se', '<C-w>=', { desc = '[S]plit: Make them [E]qual' })
+keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = '[S]plit: Close [X]' })
 
 -- Tab management
-keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = 'Open new tab' })
-keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = 'Close current tab' })
-keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = 'Go to next tab' })
-keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = 'Go to previous tab' })
-keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' })
+keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = '[T]ab: [O]pen new' })
+keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = '[T]ab: Close [X]' })
+keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = '[T]ab: [N]ext' })
+keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = '[T]ab: [P]revious' })
+keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = '[T]ab: [C]urrent in new buffer' })
 
 -- Quarto/DS workwflow
 local is_code_chunk = function()

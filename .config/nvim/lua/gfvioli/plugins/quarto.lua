@@ -229,14 +229,14 @@ return {
             vim.g.molten_auto_open_output = false
         end,
         keys = {
-            { '<leader>mi', ':MoltenInit<cr>',           desc = '[M]olten [I]nit' },
+            { '<leader>mi', ':MoltenInit<cr>',           mode = 'n', desc = '[M]olten [I]nit' },
             {
                 '<leader>me',
                 ':<C-u>MoltenEvaluateVisual<cr>',
                 mode = 'v',
                 desc = '[M]olten [E]val visual',
             },
-            { '<leader>mr', ':MoltenReevaluateCell<cr>', desc = '[M]olten [R]e-eval cell' },
+            { '<leader>mr', ':MoltenReevaluateCell<cr>', mode = 'n', desc = '[M]olten [R]e-eval cell' },
         },
     },
 }
