@@ -43,14 +43,29 @@ return {
             function() builtin.find_files { cwd = vim.fn.getcwd() .. '/explorations/', prompt_title = 'Find Files in explorations' } end,
             { desc = 'Fuzzy [F]ind [F]iles in [E]xplorations folder' })
         keymap.set('n', '<leader>fg', builtin.git_files, { desc = 'Fuzzy [F]ind [G]it files' })
-        keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Fuzzy [R]ind [R]ecent files' })
-        keymap.set('n', '<leader>fs', builtin.live_grep, { desc = 'Fuzzy [F]ind [S]tring in cwd' })
-        keymap.set('n', '<leader>fc', builtin.grep_string, { desc = '[F]ind string under [C]ursor in cwd' })
+        keymap.set('n', '<leader>fb', builtin.git_branches, { desc = 'Fuzzy [F]ind [G]it [B]ranches' })
+        keymap.set('n', '<leader>fp', builtin.pickers, { desc = 'Fuzzy [F]ind [P]ickers' })
+        keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Fuzzy [F]ind [R]ecent files' })
+        keymap.set('n', '<leader>fR', builtin.registers, { desc = '[F]ind in [R]egisters' })
+        keymap.set('n', '<leader>fh', builtin.highlights, { desc = 'Fuzzy [R]ind [R]ecent files' })
+        keymap.set('n', '<leader>fs', function()
+                builtin.live_grep { file_ignore_patterns = { '^explorations/' }, prompt_title = 'Find string excl. explorations' }
+            end,
+            { desc = 'Fuzzy [F]ind [S]tring in cwd excl. explorations' })
+        keymap.set('n', '<leader>fS',
+            function() builtin.live_grep { prompt_title = 'Find string incl. explorations' } end,
+            { desc = 'Fuzzy [F]ind [S]tring in cwd incl. explorations' })
+        keymap.set('n', '<leader>fc',
+            function() builtin.grep_string { file_ignore_patterns = { '^explorations/' }, prompt_title = 'Find string under cursor excl. explorations' } end,
+            { desc = '[F]ind string under [C]ursor in cwd excl. explorations' })
+        keymap.set('n', '<leader>fC',
+            function() builtin.grep_string { prompt_title = '[F]ind [F]iles in cwd incl. explorations' } end,
+            { desc = '[F]ind string under [C]ursor in cwd incl. explorations' })
         keymap.set('n', '<leader>ft', '<cmd>TodoTelescope<CR>', { desc = '[F]ind [T]ODO comments' })
-        keymap.set('n', '<leader>fwt', telescope.extensions.git_worktree.git_worktrees,
-            { desc = "[F]ind between [W]ork[T]rees" })
-        keymap.set('n', '<leader>cwt', telescope.extensions.git_worktree.create_git_worktree,
-            { desc = "[C]reate new [W]ork[T]ree" })
+        keymap.set('n', '<leader>fw', telescope.extensions.git_worktree.git_worktrees,
+            { desc = "[F]ind between [W]orktrees" })
+        keymap.set('n', '<leader>fwn', telescope.extensions.git_worktree.create_git_worktree,
+            { desc = "[F]ind [W]orktree [N]ew" })
         keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
         keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
         keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })

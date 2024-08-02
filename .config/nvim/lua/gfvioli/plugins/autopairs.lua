@@ -13,7 +13,7 @@ return {
                 lua = { "string" }, -- don't add pairs in lua string treesitter nodes
             },
         })
-        
+
         -- import nvim-autopairs completion
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
