@@ -157,7 +157,7 @@ return {
                 end
             end
 
-            local slime_send_region_cmd = ':<C-u>call slime#send_op(visualmode(), 1)<CR>'
+            local slime_send_region_cmd = '<cmd><C-u>call slime#send_op(visualmode(), 1)<CR>'
             local function send_region()
                 -- if filetyps is not quarto, just send_region
                 if vim.bo.filetype ~= 'quarto' or vim.b['quarto_is_r_mode'] == nil then
@@ -186,7 +186,7 @@ return {
     { -- preview equations
         'jbyuki/nabla.nvim',
         keys = {
-            { '<leader>qm', ':lua require("nabla").toggle_virt()<cr>', desc = '[Q]uarto: toggle [M]ath equations' }
+            { '<leader>qm', '<cmd>lua require("nabla").toggle_virt()<cr>', desc = '[Q]uarto: toggle [M]ath equations' }
         }
     },
     { -- paste an image from the clipboard or drag-and-drop
@@ -216,13 +216,13 @@ return {
         },
         config = function(_, opts)
             require('img-clip').setup(opts)
-            vim.keymap.set('n', '<leader>ii', ':PasteImage<cr>', { desc = '[I]nsert [I]mage from clipboard' })
+            vim.keymap.set('n', '<leader>ii', '<cmd>PasteImage<cr>', { desc = '[I]nsert [I]mage from clipboard' })
         end,
     },
     {
         'benlubas/molten-nvim',
         enabled = false,
-        build = ':UpdateRemotePlugins',
+        build = '<cmd>UpdateRemotePlugins',
         init = function()
             vim.g.molten_image_provider = 'image.nvim'
             vim.g.molten_output_win_max_height = 20
@@ -232,7 +232,7 @@ return {
             { '<leader>mi', ':MoltenInit<cr>',           mode = 'n', desc = '[M]olten [I]nit' },
             {
                 '<leader>me',
-                ':<C-u>MoltenEvaluateVisual<cr>',
+                '<cmd><C-u>MoltenEvaluateVisual<cr>',
                 mode = 'v',
                 desc = '[M]olten [E]val visual',
             },
