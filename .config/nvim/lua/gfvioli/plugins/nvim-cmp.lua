@@ -13,7 +13,7 @@ return {
         'kdheepak/cmp-latex-symbols',          -- for latex
         'jmbuhr/cmp-pandoc-references',        -- for bibliography, reference and cross-ref items
         'jmbuhr/otter.nvim',                   -- for syntax highlight and autocompletion inside quarto files
-        'ray-x/cmp-treesitter',                --
+        'ray-x/cmp-treesitter',                -- completion of treesitter nodes
         {
             'L3MON4D3/LuaSnip',
             version = 'v2.*', -- Use always latest major release
@@ -71,7 +71,7 @@ return {
             },
         })
 
-    --     luasnip.filetype_extend('quarto', { 'markdown' })
-    --     luasnip.filetype_extend('rmarkdown', { 'markdown' })
+        luasnip.filetype_extend('quarto', { 'markdown' })
+        luasnip.filetype_extend('rmarkdown', { 'markdown' })
     end,
 }

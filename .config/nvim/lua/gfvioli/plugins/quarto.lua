@@ -37,8 +37,8 @@ return {
                         { desc = "[O]tter [E]xport with overwrite" })
                     vim.keymap.set("n", "<leader>oa", function() require("otter").activate() end,
                         { desc = "[O]tter [A]ctivate" })
-                    vim.keymap.set('n', '<leader>od', function() require('otter').deactivate() end,
-                        { desc = "[O]tter [D]eactivate" })
+                    vim.keymap.set('n', '<leader>ok', function() require('otter').deactivate() end,
+                        { desc = "[O]tter [K]ill" })
                 end,
             },
         },
@@ -229,14 +229,14 @@ return {
             vim.g.molten_auto_open_output = false
         end,
         keys = {
-            { '<leader>mi', ':MoltenInit<cr>',           mode = 'n', desc = '[M]olten [I]nit' },
+            { '<leader>mi', '<cmd>MoltenInit<cr>',           mode = 'n', desc = '[M]olten [I]nit' },
             {
                 '<leader>me',
                 '<cmd><C-u>MoltenEvaluateVisual<cr>',
                 mode = 'v',
                 desc = '[M]olten [E]val visual',
             },
-            { '<leader>mr', ':MoltenReevaluateCell<cr>', mode = 'n', desc = '[M]olten [R]e-eval cell' },
+            { '<leader>mr', '<cmd>MoltenReevaluateCell<cr>', mode = 'n', desc = '[M]olten [R]e-eval cell' },
         },
     },
 }

@@ -43,7 +43,7 @@ return {
                 gs.diffthis("~")
             end, "[D]iff this ~")
 
-            map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Gitsigns select hunk")
+            -- map({ "o", "x" }, "ih", "<cmd><C-U>Gitsigns select_hunk<CR>", "Gitsigns select hunk")
         end,
     },
 }
