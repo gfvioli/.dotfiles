@@ -7,11 +7,20 @@ if wezterm.config_builder() then
     config = wezterm.config_builder()
 end
 
+-- Open maximized
+local mux = wezterm.mux
+
+wezterm.on("gui-startup", function(cmd)
+    local tab, pane, window = mux.spawn_window(cmd or {})
+    window:gui_window():maximize()
+end)
+
 -- Loading my WSLs setup
 config.wsl_domains = {
     {
         name = 'WSL:Ubuntu',           -- The name of the domain, must be unique amongts all types of domains, not only WSL.
         distribution = 'Ubuntu-24.04', -- The name of the distribution, needs to match the distribution name that is output by `wsl -l -v`
+        default_cwd = '~'
     },
 }
 
@@ -19,7 +28,7 @@ config.default_domain = 'WSL:Ubuntu' -- Call your default domain
 
 -- Font settings
 config.font = wezterm.font('MesloLGS Nerd Font Mono')
-config.font_size = 10
+config.font_size = 12
 
 -- General UI configs
 config.enable_tab_bar = false        -- Prefer multiplexing in TMUX anyway
@@ -31,6 +40,10 @@ config.window_padding = {
     right = 0,
     top = 0,
     bottom = 0,
+}
+
+config.keys = {
+    -- { key = "0", mods = "CTRL", action = wezterm.ResetFontSize() },
 }
 
 config.color_scheme = 'TokyoNight'
