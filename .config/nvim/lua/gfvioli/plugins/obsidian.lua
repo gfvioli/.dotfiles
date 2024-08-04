@@ -34,10 +34,10 @@ return {
             },
 
             vim.keymap.set('n', "<leader>of", function() return obsidian.util.gf_passthrough() end,
-                { noremap = false, expr = true, buffer = true, desc = '[O]bisidan [f]ollow' }),
+                { noremap = false, expr = true, buffer = true, desc = '[O]bisidan [F]ollow' }),
 
             vim.keymap.set('n', "<leader>od", function() return obsidian.util.toggle_checkbox() end,
-                { buffer = true, desc = '[O]bsidian [d]one' }),
+                { buffer = true, desc = '[O]bsidian [D]one' }),
 
             note_fontmatter_func = function(note)
                 -- This is equivalent to the default frontmatter
