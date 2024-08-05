@@ -31,8 +31,10 @@ config.font = wezterm.font('MesloLGS Nerd Font Mono')
 config.font_size = 12
 
 -- General UI configs
-config.enable_tab_bar = false        -- Prefer multiplexing in TMUX anyway
-config.window_decorations = "RESIZE" -- remove top bar for extra real estate, but I can still resize the window
+config.enable_tab_bar = false -- Prefer multiplexing in TMUX anyway
+-- remove top bar for extra real estate, but I can still resize the window
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.window_close_confirmation = 'NeverPrompt'
 config.window_background_opacity = 0
 config.win32_system_backdrop = "Acrylic"
 config.window_padding = {
@@ -41,9 +43,8 @@ config.window_padding = {
     top = 0,
     bottom = 0,
 }
-
 config.keys = {
-    -- { key = "0", mods = "CTRL", action = wezterm.ResetFontSize() },
+    { key = "0", mods = "CTRL", action = wezterm.action.ResetFontSize },
 }
 
 config.color_scheme = 'TokyoNight'
