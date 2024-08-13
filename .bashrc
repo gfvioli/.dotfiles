@@ -127,3 +127,4 @@ export PATH=$PATH:$HOME/bin
 export DISPLAY=:0
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"
