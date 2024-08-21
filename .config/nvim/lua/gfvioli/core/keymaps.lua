@@ -122,8 +122,8 @@ local function new_terminal_shell()
 end
 
 -- new terminals keymaps
-keymap.set({ 'n', 'i' }, '<leader>cp', new_terminal_python, { desc = '[C]ode [P]ython' }) -- less clear than the iPython one
-keymap.set({ 'n', 'i' }, '<leader>ci', new_terminal_ipython, { desc = '[C]ode [I]Python' })
-keymap.set({ 'n', 'i' }, '<leader>cr', new_terminal_r, { desc = '[C]ode [R]' })
-keymap.set({ 'n', 'i' }, '<leader>cj', new_terminal_julia, { desc = '[C]ode [J]ulia' })
-keymap.set({ 'n', 'i' }, '<leader>ct', new_terminal_shell, { desc = '[C]ode [T]erminal' })
+keymap.set('n', '<leader>cp', new_terminal_python, { desc = '[C]ode [P]ython' }) -- less clear than the iPython one
+keymap.set('n', '<leader>ci', new_terminal_ipython, { desc = '[C]ode [I]Python' })
+keymap.set('n', '<leader>cr', new_terminal_r, { desc = '[C]ode [R]' })
+keymap.set('n', '<leader>cj', new_terminal_julia, { desc = '[C]ode [J]ulia' })
+keymap.set('n', '<leader>ct', new_terminal_shell, { desc = '[C]ode [T]erminal' })
