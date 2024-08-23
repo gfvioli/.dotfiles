@@ -471,11 +471,22 @@ After putting the installing tmux and tpm and putting the config in place, open 
 
 ### [Quarto](https://github.com/quarto-dev/quarto-cli)
 
-Open source scientific and technical publishing system, to mix markdown and code.
+Open source scientific and technical publishing system, to mix markdown and code. Also helps with jupyter notebook-like development inside neovim.
 
 ```bash
 QUARTO_VERSION=$(curl -s "https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest" | grep -Po '"tag_name": "v\K[^"]*') 
 curl -Lo ~/quarto.deb "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb"
 sudo dpkg -i ~/quarto.deb
 rm -rf ~/quarto.deb
+```
+
+### [yazi](https://github.com/sxyazi/yazi)
+
+Open source super fast terminal file manager written in Rust.
+
+```bash
+YAZI_VERSION=$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo ~/yazi.snap "https://github.com/sxyazi/yazi/releases/download/v${YAZI_VERSION}/yazi-x86_64-unknown-linux-gnu.snap"
+sudo snap install --dangerous --classic yazi.snap
+export PATH=$PATH:/snap/bin
 ```
