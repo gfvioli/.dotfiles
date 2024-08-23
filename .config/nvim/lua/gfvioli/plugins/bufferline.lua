@@ -8,4 +8,5 @@ return {
             separator_style = "slant",
         },
     },
+    enabled = false,
 }
