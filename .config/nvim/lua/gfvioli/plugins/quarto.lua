@@ -88,6 +88,7 @@ return {
     { -- send code from python/r/qmd documets to a terminal or REPL like ipython, R, bash
         'jpalardy/vim-slime',
         dev = false,
+        ft = { 'quarto' },
         init = function()
             vim.b['quarto_is_python_chunk'] = false
             Quarto_is_in_python_chunk = function()
@@ -179,7 +180,7 @@ return {
                 end
             end
 
-            vim.keymap.set({ 'n', 'i' }, '<leader><CR>', send_cell, { desc = 'Send code to terminal' })
+            vim.keymap.set('n', '<leader><CR>', send_cell, { desc = 'Send code to terminal' })
             vim.keymap.set('v', '<leader><CR>', send_region, { desc = 'Send code to terminal' })
         end,
     },
