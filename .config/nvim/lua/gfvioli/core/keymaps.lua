@@ -91,11 +91,11 @@ local insert_bash_chunk = function()
     insert_code_chunk 'bash'
 end
 
-keymap.set({ 'n', 'i' }, '<m-p>', insert_py_chunk, { desc = '[I]nsert [P]ython chunk' })
-keymap.set({ 'n', 'i' }, '<m-R>', insert_r_chunk, { desc = '[I]nsert [R] chunk' })
-keymap.set({ 'n', 'i' }, '<m-J>', insert_julia_chunk, { desc = '[I]nsert [J]ulia chunk' })
-keymap.set({ 'n', 'i' }, '<m-l>', insert_lua_chunk, { desc = '[I]nsert [L]ua chunk' })
-keymap.set({ 'n', 'i' }, '<m-B>', insert_bash_chunk, { desc = '[I]nsert [B]ash chunk' })
+keymap.set('n', '<leader>ip', insert_py_chunk, { desc = '[I]nsert [P]ython chunk' })
+keymap.set('n', '<leader>ir', insert_r_chunk, { desc = '[I]nsert [R] chunk' })
+keymap.set('n', '<leader>ij', insert_julia_chunk, { desc = '[I]nsert [J]ulia chunk' })
+keymap.set('n', '<leader>il', insert_lua_chunk, { desc = '[I]nsert [L]ua chunk' })
+keymap.set('n', '<leader>ib', insert_bash_chunk, { desc = '[I]nsert [B]ash chunk' })
 
 local function new_terminal(lang)
     vim.cmd('vsplit term://' .. lang)
@@ -122,8 +122,8 @@ local function new_terminal_shell()
 end
 
 -- new terminals keymaps
-keymap.set({ 'n', 'i' }, '<leader>cp', new_terminal_python, { desc = '[C]ode [P]ython' }) -- less clear than the iPython one
-keymap.set({ 'n', 'i' }, '<leader>ci', new_terminal_ipython, { desc = '[C]ode [I]Python' })
-keymap.set({ 'n', 'i' }, '<leader>cr', new_terminal_r, { desc = '[C]ode [R]' })
-keymap.set({ 'n', 'i' }, '<leader>cj', new_terminal_julia, { desc = '[C]ode [J]ulia' })
-keymap.set({ 'n', 'i' }, '<leader>ct', new_terminal_shell, { desc = '[C]ode [T]erminal' })
+keymap.set('n', '<leader>cp', new_terminal_python, { desc = '[C]ode [P]ython' }) -- less clear than the iPython one
+keymap.set('n', '<leader>ci', new_terminal_ipython, { desc = '[C]ode [I]Python' })
+keymap.set('n', '<leader>cr', new_terminal_r, { desc = '[C]ode [R]' })
+keymap.set('n', '<leader>cj', new_terminal_julia, { desc = '[C]ode [J]ulia' })
+keymap.set('n', '<leader>ct', new_terminal_shell, { desc = '[C]ode [T]erminal' })

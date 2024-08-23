@@ -84,7 +84,9 @@ return {
                 name = 'Python Current File',
                 type = 'debugpy',
                 request = 'launch',
-                env = { LOCAL_RUN = "1" },
+                command = {
+                    env = { LOCAL_RUN = "True" },
+                },
                 program = '${file}',
                 pythonPath = function()
                     return python_path
@@ -96,10 +98,13 @@ return {
                 request = 'launch',
                 module = 'dagster',
                 args = { 'dev', },
-                env = { LOCAL_RUN = "1" },
+                command = {
+                    env = { LOCAL_RUN = "True" },
+                },
                 subProcess = true,
                 pythonPath = function()
-                    return vim.fn.getcwd() .. '/.venv/bin/python'
+                    -- return vim.fn.getcwd() .. '/.venv/bin/python'
+                    return python_path
                 end,
             }
         }
