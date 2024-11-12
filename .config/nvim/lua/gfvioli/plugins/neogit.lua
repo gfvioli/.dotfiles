@@ -21,6 +21,7 @@ return {
 
         keymap.set('n', '<leader>gb', '<cmd>Telescope git_branches<CR>', { desc = 'Neo[G]it: View git [B]ranches' })
 
-        keymap.set('n', '<leader>gB', '<cmd>G blame<CR>', { desc = 'Neo[G]it: Toggle git [B]lame' })
+        -- Ambiguous command error, using gitsigns for now
+        -- keymap.set('n', '<leader>gB', '<cmd>G blame<CR>', { desc = 'Neo[G]it: Toggle git [B]lame' })
     end
 }

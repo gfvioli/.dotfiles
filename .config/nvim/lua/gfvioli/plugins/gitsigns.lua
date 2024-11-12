@@ -31,10 +31,10 @@ return {
 
             map("n", "<leader>hp", gs.preview_hunk, "[H]unk: [P]review")
 
-            -- NOTE: duplicated from neogit, keeping that one for now
-            -- map("n", "<leader>gB", function()
-            --     gs.blame_line({ full = true })
-            -- end, "Blame line")
+            -- NOTE: duplicated from neogit, using this one because of ambigous command error
+            map("n", "<leader>gB", function()
+                gs.blame_line({ full = true })
+            end, "Blame line")
 
             map("n", "<leader>hB", gs.toggle_current_line_blame, "Line [B]lame")
 

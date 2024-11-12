@@ -40,11 +40,11 @@ keymap.set('n', '<leader>se', '<C-w>=', { desc = '[S]plit: Make them [E]qual' })
 keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = '[S]plit: Close [X]' })
 
 -- Tab management
-keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = '[T]ab: [O]pen new' })
-keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = '[T]ab: Close [X]' })
-keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = '[T]ab: [N]ext' })
-keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = '[T]ab: [P]revious' })
-keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = '[T]ab: [C]urrent in new buffer' })
+-- keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = '[T]ab: [O]pen new' })
+-- keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = '[T]ab: Close [X]' })
+-- keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = '[T]ab: [N]ext' })
+-- keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = '[T]ab: [P]revious' })
+-- keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = '[T]ab: [C]urrent in new buffer' })
 
 -- Quarto/DS workwflow
 local is_code_chunk = function()
