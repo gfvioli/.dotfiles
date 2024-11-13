@@ -155,11 +155,6 @@ show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
-# installing pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
 # - You should make sure to pass the rest of the arguments to fzf.
@@ -179,8 +174,8 @@ _fzf_comprun() {
 export PATH="$PATH:$HOME/.local/bin"
 
 # --- setting up thefuck ---
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
+# eval $(thefuck --alias)
+# eval $(thefuck --alias fk)
 
 # installing tldr
 export PATH="$PATH:/usr/local/bin/tldr"
