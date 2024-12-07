@@ -1,4 +1,4 @@
-This is a full guide to get a working version of Ubuntu (WSL) from scratch to fully setup.
+This is a full guide to get a working version of Ubuntu (WSL) from scratch to fully setup while using standard linux commands. At the boottom I have the setup using Nix Home-Manager. 
 
 ## Installing essentials 
 
@@ -489,4 +489,21 @@ YAZI_VERSION=$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest
 curl -Lo ~/yazi.snap "https://github.com/sxyazi/yazi/releases/download/v${YAZI_VERSION}/yazi-x86_64-unknown-linux-gnu.snap"
 sudo snap install --dangerous --classic yazi.snap
 export PATH=$PATH:/snap/bin
+```
+
+## Setup using Nix Home-Manager
+
+First, install Nix by using the deterministic installer.
+```sh
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
+This wil install the Nix CLI and you'll be able to execute then you can install all the programs and dotfiles by running:
+
+```sh
+nix shell nixpkgs#home-manager nixpkgs#gh --command sh -c "\
+    gh auth login \
+    && gh repo clone gfvioli/.dotfiles -- --depth=1 \
+    && home-manager switch --flake ./dotfiles
+"
 ```
