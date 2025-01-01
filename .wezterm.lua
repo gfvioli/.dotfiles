@@ -49,7 +49,11 @@ config.window_padding = {
     bottom = 0,
 }
 config.keys = {
-    { key = "0", mods = "CTRL", action = wezterm.action.ResetFontSize },
+    { key = "0", mods = "CTRL",       action = wezterm.action.ResetFontSize },
+    { key = "j", mods = "CTRL|SHIFT", action = wezterm.action.SwitchToWorkspace { name = 'WSL:Ubuntu', spawn = { domain = { DomainName = 'WSL:Ubuntu' } } } },
+    { key = "k", mods = "CTRL|SHIFT", action = wezterm.action.SwitchToWorkspace { name = 'WSL:Ubuntu-dev', spawn = { domain = { DomainName = 'WSL:Ubuntu-dev' } } } },
+    { key = '9', mods = 'ALT',        action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES', }, },
+
 }
 
 config.color_scheme = 'TokyoNight'
