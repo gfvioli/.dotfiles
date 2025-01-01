@@ -192,3 +192,5 @@ export NVM_DIR="$HOME/.nvm"
 [[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
 
 source ~/.profile
+
+export PATH="$PATH:/usr/local/bin/yazi"

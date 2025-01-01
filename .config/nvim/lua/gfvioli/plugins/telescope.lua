@@ -47,7 +47,7 @@ return {
         keymap.set('n', '<leader>fp', builtin.pickers, { desc = 'Fuzzy [F]ind [P]ickers' })
         keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Fuzzy [F]ind [R]ecent files' })
         keymap.set('n', '<leader>fR', builtin.registers, { desc = '[F]ind in [R]egisters' })
-        keymap.set('n', '<leader>fh', builtin.highlights, { desc = 'Fuzzy [R]ind [R]ecent files' })
+        keymap.set('n', '<leader>fh', builtin.highlights, { desc = 'Fuzzy [F]ind [H]ighlights' })
         keymap.set('n', '<leader>fs', function()
                 builtin.live_grep { file_ignore_patterns = { '^explorations/' }, prompt_title = 'Find string excl. explorations' }
             end,

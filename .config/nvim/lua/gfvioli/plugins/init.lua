@@ -3,4 +3,5 @@ return {
     "christoomey/vim-tmux-navigator",
     "preservim/vim-pencil",
     "tpope/vim-sleuth", -- Adjusting shiftdwith and expandtab heuristically
+    { 'echasnovski/mini.ai', version = '*' },
 }
