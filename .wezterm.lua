@@ -22,6 +22,11 @@ config.wsl_domains = {
         distribution = 'Ubuntu-24.04', -- The name of the distribution, needs to match the distribution name that is output by `wsl -l -v`
         default_cwd = '~'
     },
+    {
+        name = 'WSL:Ubuntu-dev',           -- The name of the domain, must be unique amongts all types of domains, not only WSL.
+        distribution = 'Ubuntu-24.04-dev', -- The name of the distribution, needs to match the distribution name that is output by `wsl -l -v`
+        default_cwd = '~'
+    },
 }
 
 config.default_domain = 'WSL:Ubuntu' -- Call your default domain

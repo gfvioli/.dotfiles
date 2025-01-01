@@ -54,7 +54,7 @@ return {
             end,
 
             templates = {
-                subdir = "Templates",
+                subdir = "my notes/Templates/",
                 date_format = "%Y-%m-%d-%a",
                 time_format = "%H:%M",
                 tags = "",

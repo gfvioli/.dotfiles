@@ -47,7 +47,7 @@ return {
         keymap.set('n', '<leader>fp', builtin.pickers, { desc = 'Fuzzy [F]ind [P]ickers' })
         keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Fuzzy [F]ind [R]ecent files' })
         keymap.set('n', '<leader>fR', builtin.registers, { desc = '[F]ind in [R]egisters' })
-        keymap.set('n', '<leader>fh', builtin.highlights, { desc = 'Fuzzy [R]ind [R]ecent files' })
+        keymap.set('n', '<leader>fh', builtin.highlights, { desc = 'Fuzzy [F]ind [H]ighlights' })
         keymap.set('n', '<leader>fs', function()
                 builtin.live_grep { file_ignore_patterns = { '^explorations/' }, prompt_title = 'Find string excl. explorations' }
             end,
@@ -62,7 +62,7 @@ return {
             function() builtin.grep_string { prompt_title = '[F]ind [F]iles in cwd incl. explorations' } end,
             { desc = '[F]ind string under [C]ursor in cwd incl. explorations' })
         keymap.set('n', '<leader>ft', '<cmd>TodoTelescope<CR>', { desc = '[F]ind [T]ODO comments' })
-        keymap.set('n', '<leader>fw', telescope.extensions.git_worktree.git_worktrees,
+        keymap.set('n', '<leader>fws', telescope.extensions.git_worktree.git_worktrees,
             { desc = "[F]ind between [W]orktrees" })
         keymap.set('n', '<leader>fwn', telescope.extensions.git_worktree.create_git_worktree,
             { desc = "[F]ind [W]orktree [N]ew" })
