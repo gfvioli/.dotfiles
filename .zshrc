@@ -194,3 +194,10 @@ export NVM_DIR="$HOME/.nvm"
 source ~/.profile
 
 export PATH="$PATH:/usr/local/bin/yazi"
+
+. "$HOME/.local/bin/env"
+export BAT_THEME=tokyonight_night
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+export PATH="$PATH:/snap/bin"
+export RUSTC_WRAPPER='sccache'

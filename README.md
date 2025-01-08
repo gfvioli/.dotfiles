@@ -1,7 +1,7 @@
-This is a full guide to get a working version of Ubuntu (WSL) from scratch to fully setup while using standard linux commands. At the boottom I have the setup using Nix Home-Manager. 
+This is a full guide to get a working version of Ubuntu (WSL) from scratch to fully setup while using standard linux commands. At the bottom I have the setup using Nix Home-Manager. 
 
 ## Installing essentials 
-
+This are the most essential libraries to get started.
 ```bash
 sudo apt-get update
 sudo apt install \
@@ -26,7 +26,6 @@ sudo apt install \
 
 ### Git
 Now install git
-
 ```bash
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt-get update
@@ -38,6 +37,21 @@ To setup up the user.name and email in git:
 git config --global user.name "Gian Violi"
 git config --global user.email "gfvioli@gmail.com"
 ```
+
+Then I can clone my dotfiles repo into my `$HOME` directory
+```bash
+git clone git@github.com/gfvioli/dotfiles.git
+```
+
+Once I have cloned the repo, I can use stow to populate all my configuration files. \
+:warning: WARNING: This can fail if you have conflicting files, such as `~/.bashrc` which is there by default, my advice is to delete the conflict and the populate with stow.
+```bash
+stow .
+```
+This would make all configurations automatically, but since I needs to still install almost all packages, I'll keep the configuration instructions as part of the installation of all packages.
+Recommendation would be to just install all packages following the instructions and skip configuration for stow to make its magic when all its installed
+
+Now we can install a few zsh-plugins  to make the experience much nicer
 
 ## Installing and configuring zsh
 
@@ -59,20 +73,6 @@ To use the properly, I need to install [GNU Stow](https://www.gnu.org/software/s
 sudo apt-get install stow
 ```
 
-Then I can clone my dotfiles repo into my `$HOME` directory
-```bash
-git clone git@github.com/gfvioli/dotfiles.git
-```
-
-Once I have cloned the repo, I can use stow to populate all my configuration files. \
-:warning: WARNING: This can fail if you have conflicting files, such as `~/.bashrc` which is there by default, my advice is to delete the conflict and the populate with stow.
-```bash
-stow .
-```
-This would make all configurations automatically, but since I needs to still install almost all packages, I'll keep the configuration instructions as part of the installation of all packages.
-Recommendation would be to just install all packages following the instructions and skip configuration for stow to make its magic when all its installed
-
-Now we can install a few zsh-plugins  to make the experience much nicer
 
 ### Powerlevel10k
 First, we need to clone the repo:
@@ -127,44 +127,17 @@ plugins=(... zsh-syntax-highlighting)
 Just add `web-search` to the list of oh-my-zsh plugins on `~/.zshrc`
 
 
-## Installing Python
+## Installing Python using [uv](https://docs.astral.sh/uv/)
 
-To setup Python, install it using [pyenv](https://github.com/pyenv/pyenv):
-```bash
-curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-```
+uv is an extremly fast Python package and project manager, written in rust. Install it using;;
 
-To add Python to the path, use the follwing commands
 ```bash
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-echo 'eval "$(pyenv init -)"' >> ~/.zshrc
-```
-```bash
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
-echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile
-echo 'eval "$(pyenv init -)"' >> ~/.profile
-```
-```bash
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zhsrc_profile
-echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc_profile
-echo 'eval "$(pyenv init -)"' >> ~/.zshrc_profile
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Now restart the shell for the changes to take effect. The just update pyenv:
+It's also needed to install python3-venv for a general environment, tools like ruff and pyright depend on this.
 ```bash
-pyenv update
-```
-
-Then install a python version, currently using version `3.11.9` (latest 3.11). Also expose it to the global context as the default python version (and environment)
-```bash
-pyenv install 3.11
-pyenv global 3.11
-```
-
-I'm currently using the UV pip installer now, is a fast python package installer built in Rust.
-```bash
-pip install uv
+sudo apt install python3-venv
 ```
 
 ## Installing NodeJS
@@ -201,15 +174,41 @@ sudo make install
 cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 ```
 
+## Installing [Rust](https://www.rust-lang.org/)
+
+I recommend installing Rust not only because is an amaizing programming language but also because most of the following tools can be installed using cargo
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+### Installing [sccache](https://github.com/mozilla/sccache) 
+The first thing to do after installing rust (and cargo) is to install [sccache](https://github.com/mozilla/sccache) to speed up the compiling of rust binaries.
+```bash
+cargo instal sccache
+```
+
+Then you need to add the wrapper into your `~/.zshrc` file:
+```bash
+export RUSTC_WRAPPER=sccache
+```
+
+You can verify sccache installed succesfully using:
+```bash
+sccache --show-stats
+```
+
+Now to install all cargo tools in one go you can use the following command
+```bash
+cargo install zoxide 
+```
+
 ## CLI tools
 This tools are meant to make your terminal much more powerful
 
 ### [zoxide](https://github.com/ajeetdsouza/zoxide)
 This is a better way to navigate on the terminal. You can install it via the install script
 ```bash
-curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.zshrc
-echo 'eval "$(zoxide init --cmd cd zsh)"' >> ~/.zshrc
+cargo install zoxide fd-find ripgrep git-delta eza tlrc mcprocs speedtest-rs zellij irust
+cargo install --locked bat yazi-fm yazi-cli nu
 ```
 
 ### [fzf](https://github.com/junegunn/fzf)
@@ -237,9 +236,7 @@ Alternatively, you can create your own theme using [the fzf theme generator](htt
 ### [find](https://github.com/sharkdp/fd)
 Is a simple, fast and user-friendly aternative to find.
 ```bash
-FIND_VERSION = $(curl -s "https://api.github.com/repos/sharkdp/fd/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-curl -Lo ~/find.deb "https://github.com/sharkdp/fd/releases/latest/download/fd-musl_${FIND_VERSION}_amd64.deb"
-sudo dpkg -i ~/find.deb
+cargo install fd-find
 ```
 
 Once installed, you use this commands to use fzf
@@ -288,20 +285,15 @@ rm -rf ~/lazygit ~/lazygit.tar.gz
 
 ### [ripgrep](https://github.com/BurntSushi/ripgrep)
 This allows for Live Grep, needed for telescope. 
-NOTE: this app is installed under /usr/bin/rg
+NOTE: this app is installed under the alias rg, to check it please use `which rg`.
 ```bash
-RG_VERSION = $(curl -s "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-curl -Lo ~/ripgrep.deb "https://github.com/BurntSushi/ripgrep/releases/download/${RG_VERSION}/ripgrep-${RG_VERSION}-aarch64-unknown-linux-gnu.tar.gz"
-sudo dpkg -i ~/ripgrep.deb
-rm -rf ~/ripgrep.deb
+cargo install ripgrep
 ```
 
 ### [bat](https://github.com/sharkdp/bat)
-Better cat, supporting syntax highlighting and git integration. If using Ubuntu > 20.04, but you have to do a symlink since it install as batcat to avoid a conflict
+Better cat, supporting syntax highlighting and git integration.
 ```bash
-sudo apt install bat
-mkdir -p ~/.local/bin
-ln -s /usr/bin/batcat ~/.local/bin/bat
+cargo install bat --locked
 ```
 
 To make tokyonight the default theme for bat use the following commands:
@@ -309,16 +301,14 @@ To make tokyonight the default theme for bat use the following commands:
 mkdir -p "$(bat --config-dir)/themes"
 cd "$(bat --config-dir)/themes"
 curl -O https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_night.tmTheme
+bat cache --build
 echo 'export BAT_THEME=tokyonight_night' >> ~/.zshrc
 ```
 
 ### [delta](https://github.com/dandavison/delta/)
-Download the package from the relases [page](https://github.com/dandavison/delta/releases) then use dpkg -i to install it.
+You can install delta using cargo:
 ```bash
-DELTA_VERSION = $(curl -s "https://api.github.com/repos/dandavison/delta/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-curl -Lo ~/delta.deb "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/git-delta_${DELTA_VERSION}_amd64.deb"
-sudo dpkg -i ~/delta.deb
-rm -rf ~/delta.deb
+cargo install git-delta
 ```
 
 Once done, add this to your `.gitconfig`
@@ -349,14 +339,9 @@ sudo apt update
 sudo apt install -y gpg
 ```
 
-2. Install eza via:
+2. Install eza via cargo:
 ```bash
-sudo mkdir -p /etc/apt/keyrings
-wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
-sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-sudo apt update
-sudo apt install -y eza
+cargo install eza
 ```
 
 My defult eza command is achieved by adding the following command to `~/.zshrc`
@@ -388,13 +373,9 @@ _fzf_comprun() {
 ```
 
 ### [tldr](https://github.com/tldr-pages/tldr)
-This is a better version of man pages. Make sure to install the rust GNU based binary for better performance, install following the commands
+This is a better version of man pages, you can install it using cargo
 ```bash
-TLDR_VERSION=$(curl -s "https://https://api.github.com/repos/tldr-pages/tlrc/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-curl -Lo ~/tldr.tar.gz "https://github.com/tldr-pages/tlrc/releases/download/v${TLDR_VERSION}/tlrc-v${TLDR_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
-tar xf ~/tldr.tar.gz
-sudo install tldr /usr/local/bin
-rm -rf ~/tldr.tar.gz
+cargo install tlrc
 ```
 
 ### [The Fuck](https://github.com/nvbn/thefuck)
@@ -468,31 +449,59 @@ run '~/.tmux/plugins/tpm/tpm'
 ```
 After putting the installing tmux and tpm and putting the config in place, open a tmux session and press "Ctrl-a + r" to reload config and "Ctrl-a + I" to install al plugins.
 
+### [yazi](https://github.com/sxyazi/yazi)
+Open source super fast terminal file manager written in Rust.
+
+```bash
+cargo install --locked yazi-fm yazi-cli
+```
+
+
+### [mcpros](https://github.com/pvolok/mprocs)
+A multiplexer for long standing processes and commands.
+```bash
+cargo install mcprocs
+```
+
+### [IRust](https://github.com/sigmaSd/IRust)
+A Rust REPL executable to test rust code, you can install using cargo:
+```bash
+cargo install irust
+```
+
+### [speedtest-rs](https://github.com/nelsonjchen/speedtest-rs)
+A speedtest CLI client in Rust.
+```bash
+cargo install speedtest-rs
+```
 
 ### [Quarto](https://github.com/quarto-dev/quarto-cli)
-
 Open source scientific and technical publishing system, to mix markdown and code. Also helps with jupyter notebook-like development inside neovim.
-
 ```bash
 QUARTO_VERSION=$(curl -s "https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest" | grep -Po '"tag_name": "v\K[^"]*') 
 curl -Lo ~/quarto.deb "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb"
 sudo dpkg -i ~/quarto.deb
 rm -rf ~/quarto.deb
 ```
+## Other tools I'm currently testing
+There are someother tools that I'm considering switching to, this are listed below. Particular warning about NIX is that I'm curretly not sure whether I will eventually fully migrate, while Zellij, Nushell and others I'm commited and going through the learning curve at my own pace.
 
-### [yazi](https://github.com/sxyazi/yazi)
+### [Zellij](https://github.com/zellij-org/zellij)
 
-Open source super fast terminal file manager written in Rust.
-
+A terminal multiplexer written in rust. At this moment I'm barely starting my transition to zellij, so is still a bit early for a fully fledged config
 ```bash
-YAZI_VERSION=$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-curl -Lo ~/yazi.snap "https://github.com/sxyazi/yazi/releases/download/v${YAZI_VERSION}/yazi-x86_64-unknown-linux-gnu.snap"
-sudo snap install --dangerous --classic yazi.snap
-export PATH=$PATH:/snap/bin
+cargo install zelijj
 ```
 
-## Setup using Nix Home-Manager
+## [Nushell](https://github.com/nushell/nushell)
+A modern shell written in Rust for the 21st century.
+```bash
+cargo install --locked nu
+```
 
+## :warning: EXPERIMENTAL: Setup using Nix Home-Manager
+
+I haven't finished to set this up so please use with caution and Do Your Own Research (DYOR). In any case if you want to use it I advice agaisnt managing your dotfiles with home-manager and use stow instead, for why see this great [YouTube video](https://www.youtube.com/watch?v=U6reJVR3FfA).
 First, install Nix by using the deterministic installer.
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
