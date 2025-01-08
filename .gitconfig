@@ -32,3 +32,9 @@
 	count-lines-prod = "! git log --author=\"$1\" --pretty=tformat: --numstat | awk '/^[^[:space:]]/ && !/\\.ipynb$/ { add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }' #"
 [push]
 	autoSetupRemote = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

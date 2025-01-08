@@ -103,7 +103,7 @@
   #  /etc/profiles/per-user/gfvioli/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "neovim";
   };
 
   # Let Home Manager install and manage itself.

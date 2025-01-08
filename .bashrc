@@ -128,3 +128,4 @@ export DISPLAY=:0
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . "$HOME/.cargo/env"
+export RUSTC_WRAPPER=sccache
