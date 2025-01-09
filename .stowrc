@@ -1,0 +1,11 @@
+--ignore=flake.nix
+--ignore=home.nix
+--ignore=update_win_configs.sh
+--ignore=glazewm_config.yaml
+--ignore=setup.sh
+--ignore=.gitignore
+--ignore=LICENSE
+--ignore=.viminfo
+--ignore=.git
+--ignore=.wezterm.lua
+--ignore=.stowrc

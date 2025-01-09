@@ -1,6 +1,7 @@
 .config/gh
 lazy-lock.json
 *.pyc
+btop.log
 .config/obsidian
 .config/neofetch
 .profile
