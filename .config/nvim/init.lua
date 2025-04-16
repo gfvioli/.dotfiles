@@ -1,16 +1,2 @@
-require("gfvioli.core")
-require("gfvioli.lazy")
-
-vim.g.clipboard = {
-    name = 'myClipboard',
-    copy = {
-        ['+'] = 'xclip -selection clipboard',
-        ['*'] = 'xclip -selection primary',
-    },
-    paste = {
-        ['+'] = 'xclip -selection clipboard -o',
-        ['*'] = 'xclip -selection primary -o',
-    },
-}
-
-vim.cmd("let g:mkdp_browser = 'edge'")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
