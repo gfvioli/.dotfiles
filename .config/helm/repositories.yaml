@@ -1,0 +1,30 @@
+apiVersion: ""
+generated: "0001-01-01T00:00:00Z"
+repositories:
+- caFile: ""
+  certFile: ""
+  insecure_skip_tls_verify: false
+  keyFile: ""
+  name: dagster
+  pass_credentials_all: false
+  password: ""
+  url: https://dagster-io.github.io/helm
+  username: ""
+- caFile: ""
+  certFile: ""
+  insecure_skip_tls_verify: false
+  keyFile: ""
+  name: lakefs
+  pass_credentials_all: false
+  password: ""
+  url: https://charts.lakefs.io
+  username: ""
+- caFile: ""
+  certFile: ""
+  insecure_skip_tls_verify: false
+  keyFile: ""
+  name: oauth2-proxy
+  pass_credentials_all: false
+  password: ""
+  url: https://oauth2-proxy.github.io/manifests
+  username: ""

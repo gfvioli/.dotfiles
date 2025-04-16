@@ -39,6 +39,7 @@ return {
                 'prettier',
                 'stylua',
                 'debugpy',
+                'codelldb',
                 'mypy',
                 'tree-sitter-cli',
                 'jupytext',

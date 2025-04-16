@@ -12,3 +12,5 @@ vim.g.clipboard = {
         ['*'] = 'xclip -selection primary -o',
     },
 }
+
+vim.cmd("let g:mkdp_browser = 'edge'")
