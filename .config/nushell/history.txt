@@ -1,0 +1,104 @@
+open failed_run.json
+mv failed_run.json failed_run.csv
+open failed_run.csv
+open failed_run.csv | get 0
+open failed_run.csv | get 0 | json
+open failed_run.csv | get 0 | parse json
+open failed_run.csv | get 0 | parse 
+open failed_run.csv | get 0
+open failed_run.csv | get 0 | to json
+open failed_run.csv | get 0 | to json --indent 4
+open failed_run.csv | get 0 | to json -r
+open failed_run.csv | get 0
+open failed_run.csv | get 0 | get 0
+open failed_run.csv | get 0 | get run_body
+open failed_run.csv | get 0 | get run_body | to json
+open failed_run.csv | get 0 | get run_body | parse 
+parse --help
+open failed_run.csv | get 0 | get run_body | open as json
+open failed_run.csv | get 0 | get run_body | open json
+open failed_run.csv | get 0 | get run_body | open
+open failed_run.csv | get 0 | get run_body
+open failed_run.csv | get 0 | get run_body | from json
+exit
+open failed_run.csv | get 0 | get run_body | from json
+exit
+cd idp-simba
+cd main
+use overlay .venv/bin/activate.nu
+source .venv/bin/activate
+overlay use .venv/bin/activate.nu
+cd simba main
+overlay use .venv/bin/activate.nu
+deactivate
+clear
+overlay use .venv/bin/activate.nu
+ls .venv/bin/
+ls .venv/bin/ | activate
+ls .venv/bin/ | rg activate
+overlay use .venv/bin/activate.nu
+deactivate
+bat .venv/bin/activate.nu
+exit
+http get https://lmos.asml.com/db/lmos_cluster/offices -u cs_data_analytics -p 0f73caab9b38bd6ed3335a1136225156993fb9ed
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/lmos_cluster/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/lmos_cluster/offices | get tpe
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/lmos_cluster/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/lmos_cluster/offices | get tpe
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/lmos_cluster/offices | get tpe | get C010
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/lmos_cluster/offices | get tpe
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/lmos_cluster/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/lmos_cluster/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/lmos_cluters/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/lmos_cluter/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db//
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db//
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db//action_plans_v6_
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db//action_plans_v6_
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db//docs/LVG
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/docs/LVG
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db//INTEL
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/INTEL
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db1/
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/lmos_cluster/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asm
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db1/actions_plans_v6_DE10
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db1/actions_plans_v6_/DE10
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db1/actions_plans_v6_
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/actions_plans_v6_
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/actions_plans_v6_de10
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/de10_action_plans_v6_
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/de10_action_plans_b6_/_changes?include_docs=true
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/de10action_plans_b6_/_changes?include_docs=true
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/de10action_plans_v6_/_changes?include_docs=true
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/de10_action_plans_v6_/_changes?include_docs=true
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/de10_action_plans_v6_
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/de10action_plans_v6_
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/lmos_cluster/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/de10worklist_v5_
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/worklist_v5_de10
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/lmos_cluster/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/worklist_v5_intel
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/worklist_v5_intel/_changes?include_docs=true
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos.asml.com/db/worklist_v5_de10/_changes?include_docs=true
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/worklist_v5_intel/_changes?include_docs=true
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-lvg.asml.com/db/lmos_cluster/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-tpe.asml.com/db/worklist_v5_tw03/_changes?include_docs=true
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-tpe.asml.com/db/lmos_cluster/offices
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-tpe.asml.com/db/lmos_cluster/offices | get ein
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-tpe.asml.com/db/lmos_cluster/offices | get lvg
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-tpe.asml.com/db/lmos_cluster/offices | get tpe
+exit
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-tpe.asml.com/db/worklist_v5_tw03/_changes?include_docs=true
+exit
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-tpe.asml.com/db/worklist_v5_tw03/_changes?include_docs=true
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-tpe.asml.com/db/lmos_cluster/offices
+exit
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-tpe.asml.com/db/lmos_cluster/offices
+exit
+http get --headers [X-Auth-CouchDB-Token 0f73caab9b38bd6ed3335a1136225156993fb9ed X-Auth-CouchDB-UserName cs_data_analytics X-Auth-CouchDB-Roles [analyst]] https://lmos-tpe.asml.com/db/worklist_v5_tw03/_changes?include_docs=true
+exit

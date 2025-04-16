@@ -34,7 +34,7 @@ return {
         local keymap = vim.keymap
 
         keymap.set('n', '<leader>ff',
-            function() builtin.find_files { file_ignore_patterns = { '^explorations/' }, prompt_title = 'Find Files excl. explorations' } end,
+            function() builtin.find_files { file_ignore_patterns = { '^explorations/' }, prompt_title = 'Find Files excl. explorations', hidden = True } end,
             { desc = 'Fuzzy [F]ind [F]iles in cwd excl. explorations' })
         keymap.set('n', '<leader>fe',
             function() builtin.find_files { prompt_title = '[F]ind [F]iles in cwd incl. explorations' } end,

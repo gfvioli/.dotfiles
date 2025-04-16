@@ -5,6 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Making nvim my default editor
+export EDITOR="nvim"
+export VISUAL="nvim"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -199,5 +203,11 @@ export PATH="$PATH:/usr/local/bin/yazi"
 export BAT_THEME=tokyonight_night
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
+
+
 export PATH="$PATH:/snap/bin"
 export RUSTC_WRAPPER='sccache'
+
+alias jira=jira-terminal
+
+

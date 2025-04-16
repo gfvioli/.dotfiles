@@ -1,3 +1,9 @@
 reporting: "off"
 startupPopupVersion: 1
 disableStartupPopups: true
+os:
+  edit: 'nvim {{filename}}'
+  editAtLine: 'nvim --line={{line}} {{filename}}'
+  editAtLineAndWait: 'nvim --block --line={{line}} {{filename}}'
+  editInTerminal: true
+  openDirInEditor: 'nvim {{dir}}'

@@ -9,6 +9,12 @@ return {
     config = function()
         -- import nvim-treesitter
         local treesitter = require("nvim-treesitter.configs")
+        local treesitter_context = require("treesitter-context")
+
+        treesitter_context.setup({
+            max_lines = 4,
+            multiline_threshold = 4,
+        })
 
         -- configure treesitter
         treesitter.setup({

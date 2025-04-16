@@ -99,7 +99,7 @@ return {
                 module = 'dagster',
                 args = { 'dev', },
                 command = {
-                    env = { LOCAL_RUN = "True" },
+                    env = { LOCAL_RUN = "1" },
                 },
                 subProcess = true,
                 pythonPath = function()
