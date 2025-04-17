@@ -1,6 +1,37 @@
 return {
   "saghen/blink.cmp",
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+    "onsails/lspkind.nvim",
+    "jmbuhr/otter.nvim", -- for syntax highlight and autocompletion inside quarto files
+    "jmbuhr/cmp-pandoc-references", -- for bibliography
+    "moyiz/blink-emoji.nvim",
+  },
   opts = {
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer", "luasnip", "omni", "emoji" },
+      providers = {
+        emoji = {
+          module = "blink-emoji",
+          name = "Emoji",
+          score_offset = 15, -- Tune by preference
+          opts = { insert = true }, -- Insert emoji (default) or complete its name
+          -- should_show_items = function()
+          --   -- Enable emoji completion only for git commits and markdown.
+          --   -- By default, enabled for all file-types.
+          --   return vim.tbl_contains(
+          --     { "gitcommit", "markdown" },
+          --     vim.o.filetype
+          --   )
+          -- end,
+        },
+      },
+    },
+    references = {
+      name = "pandoc_references",
+      module = "cmp-pandoc-references.blink",
+    },
+    signature = { enabled = true }, -- experimental, use lsp-signature-help if doesn't work properly
     keymap = {
       ["<C-k>"] = { "select_prev", "fallback" }, -- previous suggestion
       ["<C-j>"] = { "select_next", "fallback" }, -- next suggestion
