@@ -1,10 +1,10 @@
 return {
-  "nvim-lua/plenary.nvim",
-  "christoomey/vim-tmux-navigator",
-  "preservim/vim-pencil",
-  "tpope/vim-sleuth", -- Adjusting shiftdwith and expandtab heuristically
+  { "christoomey/vim-tmux-navigator", event = { "BufReadPre", "BufNewFile" } },
+  { "preservim/vim-pencil", event = { "BufReadPre", "BufNewFile" } },
+  { "tpope/vim-sleuth", event = { "BufReadPre", "BufNewFile" } }, -- Adjusting shiftdwith and expandtab heuristically
   {
     "akinsho/toggleterm.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     version = "*",
     config = true,
     keys = { { "<leader>to", ":ToggleTerm direction=float <CR>" } },
@@ -12,7 +12,7 @@ return {
   {
     "ThePrimeagen/git-worktree.nvim",
 
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("git-worktree").setup({})
     end,

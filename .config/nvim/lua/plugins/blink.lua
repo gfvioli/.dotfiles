@@ -12,7 +12,6 @@ return {
       version = not vim.g.lazyvim_blink_main and "*",
     },
   },
-
   opts = {
     sources = {
       default = { "lsp", "path", "snippets", "buffer", "omni", "emoji" },

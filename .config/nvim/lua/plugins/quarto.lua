@@ -1,6 +1,7 @@
 return {
   {
     "quarto-dev/quarto-nvim",
+    ft = { "quarto" },
     dependencies = {
       {
         "jmbuhr/otter.nvim",
@@ -44,7 +45,6 @@ return {
         end,
       },
     },
-    ft = { "quarto" },
     dev = false,
     config = function()
       require("quarto").setup({
@@ -72,6 +72,8 @@ return {
   },
   { --directly open ipynb files as quarto docuements and convert back behind the scenes
     "GCBallesteros/jupytext.nvim",
+    event = "BufEnter",
+    ft = { "python" },
     opts = {
       custom_language_formatting = {
         python = {
@@ -186,6 +188,7 @@ return {
   },
   { -- preview equations
     "jbyuki/nabla.nvim",
+    ft = { "quarto", "markdown", "latex" },
     keys = {
       { "<leader>qm", '<cmd>lua require("nabla").toggle_virt()<cr>', desc = "[Q]uarto: toggle [M]ath equations" },
     },

@@ -10,5 +10,7 @@ return {
     },
   },
   ft = { "python", "quarto" },
-  keys = { { "<leader>cv", "<cmd>VenvSelect<cr>", desc = "Select VirtualEnv", ft = { "python", "quarto" } } },
+  keys = {
+    { "<leader>cv", "<cmd>VenvSelect<cr>", mode = "n", desc = "Select VirtualEnv", ft = { "python", "quarto" } },
+  },
 }

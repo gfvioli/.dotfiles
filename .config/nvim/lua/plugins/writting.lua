@@ -7,6 +7,7 @@ return {
   {
     "folke/zen-mode.nvim",
     event = { "BufReadPre", "BufNewFile" },
+    ft = "markdown",
     config = function()
       require("zen-mode").setup({
         window = {
