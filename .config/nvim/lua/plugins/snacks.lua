@@ -57,7 +57,7 @@ return {
           pane = 2,
           icon = " ",
           desc = "Browse Repo",
-          padding = { 1, 2 },
+          padding = 1,
           key = "b",
           action = function()
             Snacks.gitbrowse()

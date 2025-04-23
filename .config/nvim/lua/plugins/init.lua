@@ -17,4 +17,5 @@ return {
       require("git-worktree").setup({})
     end,
   },
+  { "linux-cultist/venv-selector.nvim", enabled = true, ft = { "python", "quarto" } },
 }
