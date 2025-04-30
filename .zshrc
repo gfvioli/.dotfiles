@@ -210,4 +210,5 @@ export RUSTC_WRAPPER='sccache'
 
 alias jira=jira-terminal
 
+export PATH=$PATH:/usr/local/go/bin
 

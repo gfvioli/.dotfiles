@@ -7,7 +7,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     version = "*",
     config = true,
-    keys = { { "<leader>to", ":ToggleTerm direction=float <CR>" } },
+    keys = { { "<leader>tt", ":ToggleTerm direction=float <CR>" } },
   },
   {
     "ThePrimeagen/git-worktree.nvim",

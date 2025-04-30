@@ -33,7 +33,7 @@ config.default_domain = "WSL:Ubuntu" -- Call your default domain
 
 -- Font settings
 config.font = wezterm.font("MesloLGS Nerd Font Mono")
-config.font_size = 12
+config.font_size = 10.75
 
 -- General UI configs
 config.enable_tab_bar = false -- Prefer multiplexing in TMUX anyway
