@@ -67,6 +67,11 @@ config.keys = {
 		}),
 	},
 	{ key = "9", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+	{
+		key = "H",
+		mods = "SHIFT|CTRL",
+		action = wezterm.action.Search({ Regex = "[a-f0-9]{6,}" }),
+	},
 }
 
 config.color_scheme = "Catpuccin"

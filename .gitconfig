@@ -2,13 +2,14 @@
     name = Gian Violi
     email = 96206151+gfvioli@users.noreply.github.com
 [pull]
-    rebase = false
+	rebase = true
 
 [init]
     defaultBranch = main
 
 [core]
     pager = delta
+    excludesFile = /home/gfvioli/.gitignore
 
 [interactive]
     diffFilter = delta --color-only
