@@ -206,8 +206,7 @@ eval "$(uvx --generate-shell-completion zsh)"
 
 
 export PATH="$PATH:/snap/bin"
-export RUSTC_WRAPPER='sccache'
-
+fpath+=~/.zfunc
 alias jira=jira-terminal
 
 export PATH=$PATH:/usr/local/go/bin

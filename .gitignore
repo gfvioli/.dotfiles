@@ -8,3 +8,5 @@ btop.log
 .config/btop/btop.conf
 .config/btop/btop.log
 .config/go
+.cargo
+!.cargo/config.toml
