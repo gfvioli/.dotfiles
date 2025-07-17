@@ -66,4 +66,4 @@ vim.g.clipboard = {
 }
 
 -- setting up default browser
-vim.cmd("let g:mkdp_browser = 'edge'")
+vim.cmd("let g:mkdp_browser = 'msedge.exe'")

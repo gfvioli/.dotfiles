@@ -10,3 +10,4 @@ btop.log
 .config/go
 .cargo
 !.cargo/config.toml
+.config/nushell/history.txt

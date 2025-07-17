@@ -41,3 +41,5 @@
 	helper = !/usr/bin/gh auth git-credential
 [rerere]
 	enabled = true
+[tag]
+	sort = -version:refname
