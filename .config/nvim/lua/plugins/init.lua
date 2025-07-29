@@ -2,13 +2,13 @@ return {
   { "christoomey/vim-tmux-navigator", event = { "BufReadPre", "BufNewFile" } },
   { "preservim/vim-pencil", event = { "BufReadPre", "BufNewFile" } },
   { "tpope/vim-sleuth", event = { "BufReadPre", "BufNewFile" } }, -- Adjusting shiftdwith and expandtab heuristically
-  {
-    "akinsho/toggleterm.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    version = "*",
-    config = true,
-    keys = { { "<leader>tt", ":ToggleTerm direction=float <CR>" } },
-  },
+  -- {
+  --   "akinsho/toggleterm.nvim",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   version = "*",
+  --   config = true,
+  --   keys = { { "<leader>tt", ":ToggleTerm direction=float <CR>" } },
+  -- },
   {
     "ThePrimeagen/git-worktree.nvim",
 
