@@ -11,3 +11,8 @@ btop.log
 .cargo
 !.cargo/config.toml
 .config/nushell/history.txt
+.config/mlflow/telemetry.json
+.config/nushell/history.sqlite3
+.config/nushell/history.txt.bak
+.config/pgcli/config
+.config/pgcli/log
