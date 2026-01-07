@@ -187,7 +187,6 @@ export PATH="$PATH:/usr/local/bin/tldr"
 # --- setting up zoxide ---
 eval "$(zoxide init --cmd cd zsh)"
 
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -201,13 +200,115 @@ export PATH="$PATH:/usr/local/bin/yazi"
 
 . "$HOME/.local/bin/env"
 export BAT_THEME=tokyonight_night
+
+# uv completions
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 
 
 export PATH="$PATH:/snap/bin"
 fpath+=~/.zfunc
+
+
 alias jira=jira-terminal
 
 export PATH=$PATH:/usr/local/go/bin
 
+## New hacks configs
+
+# Command buffer editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^e' edit-command-line
+
+# change pwd hook
+chpwd() {
+  if [[ -d .venv ]]; then
+    source .venv/bin/activate
+  elif [[ -d venv ]]; then
+    source .venv/bin/activate
+  elif [[ -n "$VIRTUAL_ENV" ]]; then
+    deactivate
+  fi
+}
+
+## Suffix aliases
+alias -s yaml="bat -l ymal"
+alias -s json="jless"
+alias -s md="bat"
+alias -s mov="open"
+alias -s png="open"
+alias -s mp4="open"
+alias -s go="$EDITOR"
+alias -s py="$EDITOR"
+alias -s rs="$EDITOR"
+
+# Global aliases
+alias -g NE='2>/dev/null' # Forward stderr to /dev/null
+alias -g DN='> /dev/null' # Forward stdout to /dev/null
+alias -g NUL='> /dev/null 2>1' # Forward both stdout and stderr to /dev/null
+alias -g JQ='| jq' # Piping output to jq
+alias -g L='| less'
+
+# Activating zmv
+autoload zmv
+
+# Custom widgets
+## Clear screen but keep current command
+clear-keep-buffer() {
+  zle clear-screen
+}
+zle -N clear-keep-buffer
+bindkey '^Xl' clear-keep-buffer
+
+## Copy command
+copy-command() {
+  echo -n $BUFFER | wl-copy
+  zle -M "Copied to clipboard"
+}
+zle -N copy-command
+bindkey '^Xc' copy-command
+
+
+## command line hotkeys
+bindkey -s '^Xgc' 'git commit -m ""\C-b'
+bindkey -s '^Xgca' 'git commit -am ""\C-b'
+
+# Command aliases
+## Git
+alias gp="git pull"
+alias gP="git push"
+alias gst="git status"
+alias gdiff="git diff"
+alias gs="git switch"
+alias gwa="git worktree add"
+alias gwr="git worktree remove"
+alias gadd="git add"
+
+## Dirs
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+## K8S
+alias k="kubectl"
+alias ka="kubectl apply -f"
+alias kg="kubectl get"
+alias kd="kubectl describe"
+alias kdel="kubectl delete"
+alias kl="kubectl logs"
+alias kgpo="kubectl get pod"
+alias kgd="kubectl get deployments"
+alias kl="kubectl logs -f"
+alias ke="kubectl exec -it"
+alias kcns='kubectl config set-context --current --namespace'
+
+## Completions
+setopt prompt_subst
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit
+compinit
+source <(kubectl completion zsh)

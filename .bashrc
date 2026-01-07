@@ -129,3 +129,4 @@ export DISPLAY=:0
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . "$HOME/.cargo/env"
 export RUSTC_WRAPPER=sccache
+export PATH="$PATH:/opt/mssql-tools18/bin"
